@@ -36,8 +36,16 @@ if($method === 'GET'){
             $clasesReadController->index();
             break;
 
+        case '/adClase';
+            $clasesReadController->agregarClase();
+            break;
+
         case '/CRUD_MAESTROS';
             $maestrosReadController->index();
+            break;
+
+        case '/adMaestro';
+            $maestrosReadController->agregarMaestro();
             break;
 
         case '/PERMISOS';
@@ -46,7 +54,11 @@ if($method === 'GET'){
             
         case '/CRUD_ALUMNOS';
             $alumnosReadController->index();
-            break;                            
+            break;
+
+        case '/adAlumno';
+            $alumnosReadController->agregarAlumno();
+            break;                               
         default:
         echo "no encontramos la ruta";
         break;

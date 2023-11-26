@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/PFN3/views/style.css">
+    <link rel="stylesheet" href="/public/css/tailwind.css">
+    <link rel="stylesheet" href="/views/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
@@ -84,7 +83,7 @@
         </div>
         <div class="shadow p-4 w-11/12  ml-6 bg-white">
             <div class="flex flex row justify-between items-center">
-                <p>Informacion de Clases</p> <button onclick="openModal('admin_clases_create.php')" class="bg-blue-500 text-white rounded p-2 text-sm hover:bg-blue-700">Agregar Clase</button>
+                <p>Informacion de Clases</p> <button onclick="openModal('/adClase')" class="bg-blue-500 text-white rounded p-2 text-sm hover:bg-blue-700">Agregar Clase</button>
             </div>
             <hr>
             <div class="flex flex row justify-between items-center">
@@ -155,4 +154,4 @@
 </body>
 
 </html>
-<script src="/PFN3/scripts/modales.js"></script>
+<script src="/scripts/modales.js"></script>
