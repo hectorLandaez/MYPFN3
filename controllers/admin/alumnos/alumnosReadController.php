@@ -3,9 +3,16 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/models/cliente.php";
 
 class AlumnosReadController{
 
+    protected $model;
+
+    public  function __construct()
+    {
+        $this-> model =new Cliente();
+    }
+
     public function index(){
-        $alumnosModel = new Cliente();
-        $alumnos = $alumnosModel->all("SELECT * FROM usuarios WHERE permiso = 'alumno'");
+        
+        $alumnos = $this->model->all("SELECT * FROM usuarios WHERE permiso = 'alumno'");
 
         include  $_SERVER["DOCUMENT_ROOT"] . "/views/admin/CRUD_ALUMNOS/admin_alumnos-read.php"; 
 
@@ -16,6 +23,22 @@ class AlumnosReadController{
         include  $_SERVER["DOCUMENT_ROOT"] . "/views/admin/CRUD_ALUMNOS/admin_alumnos_create.php"; 
 
     }
+
+    public function deleteAlumno($id){
+        $alumnoModel = new Cliente();
+        $alumnoModel->destroy($id);
+    
+        header("Location: /CRUD_ALUMNOS");
+        exit();
+    }
+
+    public function store($request){
+
+        $response =$this->model->create($request);
+        header("Location: /CRUD_ALUMNOS");
+        exit();
+    }
 }
+    
 
 

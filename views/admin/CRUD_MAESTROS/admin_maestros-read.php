@@ -131,11 +131,18 @@
                 <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center ">
                             <button onclick="openModal('admin_maestros_edit.php')"><span class="material-symbols-outlined text-blue-500 text-xl	">
                                 edit
-                            </span></button>
-                            <button>
-                            <span class="material-symbols-outlined text-red-700	text-xl	">
-                                delete
-                            </span></button>
+                                </span>
+                            </button>
+
+                            <form action="/maestros/delete" method="post">
+                            <input type="number" value="<?= $maestro["id"] ?>" hidden name="id">                
+                                <button type="submit"> 
+                                <span class="material-symbols-outlined text-red-700	text-xl	">
+                                    delete
+                                </span>
+                            </button>
+                            </form>
+
                         </td>
 
             </tr>

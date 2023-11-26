@@ -101,6 +101,7 @@
                 </table>
                 <div class="flex flex-row allign-center "> search : <div class="ml-4" style="border-color:grey;border-style: solid;border-width: 1px;"><input type="text" class="w-full"></div>
                 </div>
+
             </div>
 
             <table class="min-w-full bg-white border border-gray-300 text-xs">
@@ -127,10 +128,16 @@
                             <button onclick="openModal('admin_clases_edit.php')"><span class="material-symbols-outlined text-blue-500 text-xl	">
                                 edit
                             </span></button>
-                            <button>
+
+                            <form action="/clase/delete" method="post">
+                            <input type="number" value="<?= $clase["id"]?>" hidden name="id">                
+                                <button type="submit"> 
                             <span class="material-symbols-outlined text-red-700	text-xl	">
                                 delete
-                            </span></button>
+                            </span>
+                        </button>
+                            </form>
+
                         </td>
                     </tr>
                     <?php
