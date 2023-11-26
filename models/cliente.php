@@ -21,7 +21,7 @@ class Cliente
 
     public function all($database)
     {
-        $res = $this->db->query("select * from $database");
+        $res = $this->db->query("$database");
 
         $data = $res->fetch_all(MYSQLI_ASSOC);
 

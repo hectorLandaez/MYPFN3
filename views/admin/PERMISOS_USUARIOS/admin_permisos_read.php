@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<<!DOCTYPE html>
+
+<!DOCTYPE html>
     <html lang="en">
 
     <head>
@@ -9,7 +8,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Admin Dashboard</title>
         <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="stylesheet" href="/PFN3/views/style.css">
+        <link rel="stylesheet" href="/public/css/tailwind.css">
+        <link rel="stylesheet" href="/views/style.css">
+        <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     </head>
 
@@ -154,4 +155,4 @@
     </body>
 
     </html>
-    <script src="/PFN3/scripts/modales.js"></script>
+    <script src="/scripts/modales.js"></script>

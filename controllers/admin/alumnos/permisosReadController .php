@@ -5,7 +5,7 @@ class PermisosReadController{
 
     public function index(){
         $usuariosModel = new Cliente();
-        $usuarios = $usuariosModel->all("usuarios");
+        $usuarios = $usuariosModel->all("SELECT * FROM usuarios");
 
         include  $_SERVER["DOCUMENT_ROOT"] . "/views/admin/PERMISOS_USUARIOS/admin_permisos_read.php"; 
 

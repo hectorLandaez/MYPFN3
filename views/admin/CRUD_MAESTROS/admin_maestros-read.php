@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,7 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/PFN3/views/style.css">
+    <link rel="stylesheet" href="/public/css/tailwind.css">
+    <link rel="stylesheet" href="/views/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
@@ -84,7 +86,7 @@
         </div>
         <div class="shadow p-4 w-11/12  ml-6 bg-white">
             <div class="flex flex row justify-between items-center">
-                <p>Informacion de Maestros</p> <button onclick="openModal('admin_maestros_create.php')" class="bg-blue-500 text-white rounded p-2 text-sm hover:bg-blue-700">Agregar Maestros</button>
+                <p>Informacion de Maestros</p> <button onclick="openModal('/adMaestro')" class="bg-blue-500 text-white rounded p-2 text-sm hover:bg-blue-700">Agregar Maestros</button>
             </div>
             <hr>
             <div class="flex flex row justify-between items-center">
@@ -124,7 +126,7 @@
                             <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["name"] ?></td>
                             <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["email"] ?></td>
                             <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["direccion"] ?></td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["age"] ?></td>
+                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["FN"] ?></td>
                             <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["id"] ?></td>
                 <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center ">
                             <button onclick="openModal('admin_maestros_edit.php')"><span class="material-symbols-outlined text-blue-500 text-xl	">
@@ -159,4 +161,4 @@
 </body>
 
 </html>
-<script src="/PFN3/scripts/modales.js"></script>
+<script src="/scripts/modales.js"></script>

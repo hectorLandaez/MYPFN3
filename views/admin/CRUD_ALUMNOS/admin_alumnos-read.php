@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/PFN3/views/style.css">
+    <link rel="stylesheet" href="/public/css/tailwind.css">
+    <link rel="stylesheet" href="/views/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
@@ -81,7 +81,7 @@
         </div>
         <div class="shadow p-4 w-11/12  ml-6 bg-white">
             <div class="flex flex row justify-between items-center">
-                <p>Informacion de alumnos</p> <button onclick="openModal('admin_alumnos_create.php')" class="bg-blue-500 text-white rounded p-2 text-sm hover:bg-blue-700">Agregar Alumno</button>
+                <p>Informacion de alumnos</p> <button onclick="openModal('/adAlumno')" class="bg-blue-500 text-white rounded p-2 text-sm hover:bg-blue-700">Agregar Alumno</button>
             </div>
             <hr>
             <div class="flex flex row justify-between items-center">
@@ -122,9 +122,9 @@
                         <tr>
                             <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["id"] ?></td>
                             <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["name"] ?></td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["correo"] ?></td>
+                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["email"] ?></td>
                             <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["direccion"] ?></td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["fecha"] ?></td>
+                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["FN"] ?></td>
                             <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["id"] ?></td>
                             <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center ">
                                 <button onclick="openModal('admin_alumnos_edit.php')"><span class="material-symbols-outlined text-blue-500 text-xl	">
@@ -157,4 +157,4 @@
 </body>
 
 </html>
-<script src="/PFN3/scripts/modales.js"></script>
+<script src="/scripts/modales.js"></script>
