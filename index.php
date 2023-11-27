@@ -25,6 +25,38 @@ $method = $_SERVER["REQUEST_METHOD"];
 $route = $_SERVER["REQUEST_URI"];
 
 
+if($method === 'POST'){
+    switch ($route){
+        case '/alumnos/delete';
+        $alumnosReadController->deleteAlumno($_POST['id']);
+        break;
+
+        case '/adAlumno';
+        $alumnosReadController->store($_POST);
+        break;
+
+        case '/maestros/delete';
+        $maestrosReadController->deleteAlumno($_POST['id']);
+        break;
+
+        case '/adMaestro';
+        $maestrosReadController->store($_POST);
+        break;
+
+        case '/adClase';
+            $clasesReadController->store($_POST);
+            break;
+
+        case '/clase/delete';
+            $clasesReadController->deleteClase($_POST['id']);
+            break;    
+    default:
+        echo "no encontramos la ruta";
+        break;
+    }
+
+}
+
 if($method === 'GET'){
     switch ($route) {
 
@@ -58,7 +90,8 @@ if($method === 'GET'){
 
         case '/adAlumno';
             $alumnosReadController->agregarAlumno();
-            break;                               
+            break;
+            
         default:
         echo "no encontramos la ruta";
         break;
