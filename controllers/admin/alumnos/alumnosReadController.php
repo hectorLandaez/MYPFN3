@@ -38,6 +38,21 @@ class AlumnosReadController{
         header("Location: /CRUD_ALUMNOS");
         exit();
     }
+
+    public function editarAlumno($id){
+        
+/*      $alumno = $this->model->all("SELECT * FROM usuarios WHERE permiso = 'alumno' AND id = $id");
+ */
+        include  $_SERVER["DOCUMENT_ROOT"] . "/views/admin/CRUD_ALUMNOS/admin_alumnos_edit.php"; 
+
+    }
+
+
+    public function shoewEdit(){
+
+        include  $_SERVER["DOCUMENT_ROOT"] . "/views/admin/CRUD_ALUMNOS/admin_alumnos_edit.php"; 
+        
+    }
 }
     
 

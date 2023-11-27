@@ -12,25 +12,45 @@
     <title>MODAL</title>
 </head>
 
-<body style="">
+<body>
     <div>
         <div class="text-3xl mb-4">Agregar clase</div>
     </div>
 
     <form action="/adClase" method="post">
-        <span class="text-xs font-semibold	"> Nombre de la materia</span>
-        <div style="border-color:grey;border-style: solid;border-width: 1px;">
-            <input type="text" class="border-solid text-sm border-slate-800 w-full hover:bg-sky-50 text-slate-500 p-1" name="Nombre">
+        <div class="mb-4">
+            <span class="text-xs font-semibold">Nombre de la materia</span>
+            <div class="border border-gray-300 p-1">
+                <input type="text" class="w-full p-1" name="Nombre">
+            </div>
         </div>
 
-        <span class="text-xs font-semibold	mt-4"> Maestros disponibles para la clase</span>
-        <div style="border-color:grey;border-style: solid;border-width: 1px;">
-            <input type="text" class="border-solid text-sm border-slate-800 w-full hover:bg-sky-50 text-slate-500 p-1">
+        <div class="mb-4">
+            <span class="text-xs font-semibold">Maestros disponibles para la clase</span>
+            <div class="border border-gray-300 p-1">
+                <select id="usuarios" name="maestro" class="w-full p-1">
+                    <?php
+                        $conexion = new mysqli("localhost", "root", "", "pf");
+
+                        if ($conexion->connect_error) {
+                            die("Error de conexión a la base de datos: " . $conexion->connect_error);
+                        }
+
+                        $result = $conexion->query("SELECT name FROM usuarios WHERE permiso = 'maestro'");
+
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<option value='{$row['name']}'>{$row['name']}</option>";
+                        }
+
+                        $conexion->close();
+                    ?>
+                </select>
+            </div>
         </div>
 
-        <div class="mt-4 w-full" style=" display: flex;justify-content: flex-end;flex-wrap: wrap;gap: 8px;">
-            <button class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700" onclick="closeModal()">Close</button>
-            <button class="bg-gray-500 text-white p-2 rounded text-xs hover:bg-gray-700"type="submit">Crear</button>
+        <div class="mt-4 w-full flex justify-end flex-wrap gap-2">
+            <button class="bg-gray-500 text-white p-2 rounded text-xs hover:bg-gray-700" type="submit">Crear</button>
+            <button class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700" onclick="closeModal()" type="button">Close</button>
         </div>
     </form>
 </body>

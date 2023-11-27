@@ -127,10 +127,12 @@
                             <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["FN"] ?></td>
                             <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["id"] ?></td>
                             <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center ">
-                            <button onclick="openModal('admin_alumnos_edit.php')" type="submit"><span class="material-symbols-outlined text-blue-500 text-xl	">
+                            <input type="number" value="<?= $alumno["id"] ?>" hidden name="id"> 
+                                <a href="/edit/alumno?id=<?= $alumno["id"]?>">
+                                    <span class="material-symbols-outlined text-blue-500 text-xl	">
                                         edit
                                     </span>
-                            </button>
+                                </a>
                             <form action="/alumnos/delete" method="post">
                                 <input type="number" value="<?= $alumno["id"] ?>" hidden name="id">                
                                 <button type="submit"> 

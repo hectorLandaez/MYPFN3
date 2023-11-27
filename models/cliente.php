@@ -58,8 +58,9 @@ class Cliente
     public function createClase($data)
     {
         $nombre =$data["Nombre"];
+        $maestro =$data["maestro"];
 
-        $res = $this->db->query("INSERT INTO clases (name) VALUES ('$nombre')");
+        $res = $this->db->query("INSERT INTO clases (name, maestro) VALUES ('$nombre', '$maestro')");
         
         if($res){
             $ultimoId=$this->db->insert_id;

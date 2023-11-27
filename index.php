@@ -50,6 +50,9 @@ if($method === 'POST'){
         case '/clase/delete';
             $clasesReadController->deleteClase($_POST['id']);
             break;    
+        case '/edit/alumno';
+            $alumnosReadController->editarAlumno($_POST['id']);
+            break;              
     default:
         echo "no encontramos la ruta";
         break;
@@ -91,7 +94,10 @@ if($method === 'GET'){
         case '/adAlumno';
             $alumnosReadController->agregarAlumno();
             break;
-            
+
+        case '/edit/alumno';
+        $alumnosReadController->agregarAlumno();
+        break;    
         default:
         echo "no encontramos la ruta";
         break;
