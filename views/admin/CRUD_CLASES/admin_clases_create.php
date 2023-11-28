@@ -12,7 +12,7 @@
     <title>MODAL</title>
 </head>
 
-<body>
+<body >
     <div>
         <div class="text-3xl mb-4">Agregar clase</div>
     </div>
@@ -28,7 +28,7 @@
         <div class="mb-4">
             <span class="text-xs font-semibold">Maestros disponibles para la clase</span>
             <div class="border border-gray-300 p-1">
-                <select id="usuarios" name="maestro" class="w-full p-1">
+                <select id="usuarios" name="maestro" class="w-full">
                     <?php
                         $conexion = new mysqli("localhost", "root", "", "pf");
 
@@ -48,11 +48,12 @@
             </div>
         </div>
 
-        <div class="mt-4 w-full flex justify-end flex-wrap gap-2">
-            <button class="bg-gray-500 text-white p-2 rounded text-xs hover:bg-gray-700" type="submit">Crear</button>
-            <button class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700" onclick="closeModal()" type="button">Close</button>
+        <div class="flex justify-end flex-wrap gap-2" style="">
+        <button class="bg-gray-500 text-white p-2 rounded text-xs hover:bg-gray-700" type="submit">Crear</button>
+       
+            <button type="button" class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700" onclick="closeModal()" >Close</button>
         </div>
-    </form>
+    </form>    
 </body>
 
 </html>

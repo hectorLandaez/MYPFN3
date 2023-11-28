@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
+
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maestro Dashboard</title>
+    <title>Alumno Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/PFN3/views/style.css">
+    <link rel="stylesheet" href="/public/css/tailwind.css">
+    <link rel="stylesheet" href="/views/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
@@ -23,13 +24,13 @@
             <div class="text-xs m-3" style="display: flex;justify-content: center;"> MENU ALUMNO</div>
             <div class="text-base">
                 <div>
-                    <a href="./alumno_calficaciones_read.php">
+                    <a href="/alumno/calficaciones">
                         <div class="flex flex-row items-center h-10"> <span style=" font-size: 20px;
                                    margin-right: 10px;margin-left: 10px;" class=" material-symbols-outlined">
                                 description
                             </span> Ver Calificaciones</div>
                     </a>
-                    <a href="">
+                    <a href="#">
                         <div class="flex flex-row items-center h-10 text-xs"> <span style=" font-size: 20px;
                                    margin-right: 10px;margin-left: 10px;" class=" material-symbols-outlined">
                                 tv_gen
@@ -53,7 +54,7 @@
                                 account_circle
                             </span> Perfil</a>
                     </div>
-                    <a href="#">
+                    <a href="/logout">
                         <div class="text-red-700 flex flex-row items-center"> <span class="material-symbols-outlined">
                                 logout
                             </span>Log Out</div>

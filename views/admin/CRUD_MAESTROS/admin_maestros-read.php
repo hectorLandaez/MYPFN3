@@ -72,7 +72,7 @@
                                 account_circle
                             </span> Perfil</a>
                     </div>
-                    <a href="#">
+                    <a href="/logout">
                         <div class="text-red-700 flex flex-row items-center"> <span class="material-symbols-outlined">
                                 logout
                             </span>Log Out</div>

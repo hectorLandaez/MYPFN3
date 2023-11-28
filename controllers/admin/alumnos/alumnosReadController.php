@@ -18,6 +18,10 @@ class AlumnosReadController{
 
     }
 
+    public function show(){
+        
+    }
+
     public function agregarAlumno(){
 
         include  $_SERVER["DOCUMENT_ROOT"] . "/views/admin/CRUD_ALUMNOS/admin_alumnos_create.php"; 
