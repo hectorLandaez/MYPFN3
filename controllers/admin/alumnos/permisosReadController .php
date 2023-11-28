@@ -11,7 +11,11 @@ class PermisosReadController{
 
     }
 
-    
+    public function editarPermiso() {
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/admin/PERMISOS_USUARIOS/admin_permisos_edit.php';
+    }
+
 }
+
 
 

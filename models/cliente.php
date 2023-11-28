@@ -43,8 +43,9 @@ class Cliente
         $nombre =$data["Nombre"];
         $email =$data["email"];
         $Fechas =$data["fechas"];
+        $permiso =$data['permiso'];
 
-        $res = $this->db->query("INSERT INTO usuarios (name, email, FN) VALUES ('$nombre', '$email', '$Fechas')");
+        $res = $this->db->query("INSERT INTO usuarios (name, email, FN, permiso) VALUES ('$nombre', '$email', '$Fechas', '$permiso')");
         
         if($res){
             $ultimoId=$this->db->insert_id;
@@ -84,6 +85,20 @@ class Cliente
             return $user;
         } else {
             return false;
+        }
+    }
+
+    public function getMaestroNameById($maestroId)
+    {
+        $query = "SELECT name FROM usuarios WHERE id = $maestroId";
+        $result = $this->db->query($query);
+
+        if ($result) {
+            $maestro = $result->fetch_assoc();
+            return $maestro['name'];
+        } else {
+            // Manejo de error, podrías lanzar una excepción o devolver un valor predeterminado
+            return "Nombre no encontrado";
         }
     }
 }

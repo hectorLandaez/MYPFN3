@@ -33,13 +33,15 @@
         <div style="border-color:grey;border-style: solid;border-width: 1px;">
         <input type="text" class="border-solid	border-slate-800 w-full hover:bg-sky-50 text-slate-500"name='Direccion'></div>
         
-
+        <div class="...">
+            <input type="hidden" name="permiso" value="alumno" />
+        </div>
         <span class="text-xs font-semibold	mt-4"> Fechas </span>
         <div style="border-color:grey;border-style: solid;border-width: 1px;">
         <input type="date" class="border-solid	border-slate-800 w-full hover:bg-sky-50 text-slate-500" name='fechas'></div>
 
         <div class="mt-4 w-full" style=" display: flex;justify-content: flex-end;flex-wrap: wrap;gap: 8px;">
-            <button class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700"  onclick="closeModal()">Close</button>
+            <button class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700"  onclick="closeModal()" type="button"> Close</button>
             <button class="bg-gray-500 text-white p-2 rounded text-xs hover:bg-gray-700" type="submit">Crear</button>
         </div>
  </form>

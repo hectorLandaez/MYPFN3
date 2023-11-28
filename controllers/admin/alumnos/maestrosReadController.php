@@ -10,7 +10,10 @@ class MaestrosReadController{
     }
     public function index(){
         $maestrosModel = new Cliente();
+        $clasesModel = new Cliente();
+
         $maestros = $maestrosModel->all("SELECT * FROM usuarios WHERE permiso = 'maestro';");
+        $clases = $clasesModel->all("SELECT * FROM clases");
 
         include  $_SERVER["DOCUMENT_ROOT"] . "/views/admin/CRUD_MAESTROS/admin_maestros-read.php";
 
@@ -35,6 +38,8 @@ class MaestrosReadController{
         header("Location: /CRUD_MAESTROS");
         exit();
     }
-    
+    public function editarMaestro() {
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/admin/CRUD_MAESTROS/admin_maestros_edit.php';
+    }
 }
 

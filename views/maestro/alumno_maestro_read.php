@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alumno Dashboard</title>
+    <title>Maestro Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/public/css/tailwind.css">
     <link rel="stylesheet" href="/views/style.css">
@@ -20,8 +20,6 @@
         </div>
         <hr style="background-color: while;">
         <div class="text-xs">
-            <p class="text-lg">Alumno</p>
-            <div class="text-xs">
             <?php
             session_start();
 
@@ -30,27 +28,21 @@
 
                 $maestroName = $this->model->getMaestroNameById($userId);
 
+                echo '<p class="text-lg">Maestro</p>';
                 echo '<p class="text-xs">' . $maestroName . '</p>';
             }
             ?>
         </div>
-        </div>
         <hr>
         <div>
-            <div class="text-xs m-3" style="display: flex;justify-content: center;"> MENU ALUMNO</div>
+            <div class="text-xs m-3" style="display: flex;justify-content: center;"> MENU MAESTRO</div>
             <div class="text-base">
                 <div>
-                    <a href="/alumno/calficaciones">
+                    <a href="/maestro/alumnos">
                         <div class="flex flex-row items-center h-10"> <span style=" font-size: 20px;
                                    margin-right: 10px;margin-left: 10px;" class=" material-symbols-outlined">
-                                description
-                            </span> Ver Calificaciones</div>
-                    </a>
-                    <a href="#">
-                        <div class="flex flex-row items-center h-10 text-xs"> <span style=" font-size: 20px;
-                                   margin-right: 10px;margin-left: 10px;" class=" material-symbols-outlined">
-                                tv_gen
-                            </span> Administra tus calificiaciones</div>
+                                school
+                            </span> Alumnos</div>
                     </a>
                 </div>
     </nav>
@@ -61,7 +53,7 @@
                 </span>Home</h1>
             <div class="dropdown">
                 <button class="flex items-center">
-                <?php echo $maestroName; ?>
+                    <?php echo $maestroName; ?>
                     <span class="material-symbols-outlined ml-2">expand_more</span>
                 </button>
                 <div class="dropdown-content">
@@ -84,7 +76,7 @@
         </div>
         <div class="shadow p-4 w-11/12  ml-6 bg-white">
             <div class="flex flex row justify-between items-center">
-                <p>calificacionesy mensajes de tus clases</p> 
+                <p>calificacionesy mensajes de tus clases</p>
             </div>
             <hr>
             <div class="flex flex row justify-between items-center">
@@ -104,43 +96,50 @@
                 </div>
             </div>
 
-    <table class="min-w-full bg-white border border-gray-300 text-xs">
-        <thead style="color: #576787;">
-            <tr class="">
-                <th class="py-2 px-4 border-gray-300">#<div></th>
-                <th class="py-2 px-4 border-l border-gray-300">Nombre de la clase</th>
-                <th class="py-2 px-4 border-l border-gray-300">Calificacion</th>
-                <th class="py-2 px-4 border-l border-gray-300">Mensajes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="py-2 px-4 border-b  border-l border-gray-300"><?php echo $userId; ?></td>
+            <table class="min-w-full bg-white border border-gray-300 text-xs">
+                <thead style="color: #576787;">
+                    <tr class="">
+                        <th class="py-2 px-4 border-gray-300">#</th>
+                        <th class="py-2 px-4 border-l border-gray-300">Nombre del alumno</th>
+                        <th class="py-2 px-4 border-l border-gray-300">Calificacion</th>
+                        <th class="py-2 px-4 border-l border-gray-300">Mensajes</th>
+                        <th class="py-2 px-4 border-l border-gray-300">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $inscripciones = $this->model->all("SELECT * FROM inscripciones");
 
-                <?php
+                    foreach ($clases as $clase) {
+                        $nombreClase = $clase['id'];
 
-                            $inscripciones = $this->model->all("SELECT * FROM inscripciones WHERE id_estudiante = $userId");
-
-
+                        if ($clase['maestro'] == $maestroName) {
                             foreach ($inscripciones as $inscripcion) {
+                                if ($inscripcion['id_clase'] == $nombreClase) {
+                                    foreach ($alumnos as $alumno) {
+                                        if ($inscripcion['id_estudiante'] == $alumno['id']) {
+                                            echo '<tr>';
+                                            echo '<td class="py-2 px-4 border-b border-l border-gray-300">' . $alumno['id'] . '</td>';
+                                            echo '<td class="py-2 px-4 border-b border-l border-gray-300">' . $alumno['name'] . '</td>';
+                                            echo '<td class="py-2 px-4 border-b border-l border-gray-300">sin calificar </td>';
+                                            echo '<td class="py-2 px-4 border-b border-l border-gray-300">Mensajes</td>';
+                                            echo '<td class="py-2 px-4 border-b border-l border-gray-300"><span class="material-symbols-outlined">
+                                                    picture_as_pdf
+                                                    </span>
+                                                    <span class="material-symbols-outlined">
+                                                    share
+                                                    </span></td>';
+                                            echo '</tr>';
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    ?>
+                </tbody>
+            </table>
 
-                                $materiaId = $inscripcion['id_clase'];
-
-                                foreach ($clases as $clase) {
-
-                                    if ($clase['id'] == $inscripcion['id_clase'])
-                                    echo '<td class="py-2 px-4 border-b  border-l border-gray-300">' . $clase['name']  . '</td>';
-
-
-                                }    
-
-                            } 
-                            ?>
-                <td class="py-2 px-4 border-b  border-l border-gray-300"></td>
-                <td class="py-2 px-4 border-b  border-l border-gray-300"></td>
-            </tr>
-        </tbody>
-    </table>
 
         </div>
     </div>

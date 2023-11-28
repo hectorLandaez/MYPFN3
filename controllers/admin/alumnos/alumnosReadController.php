@@ -11,8 +11,11 @@ class AlumnosReadController{
     }
 
     public function index(){
-        
+
+
+        $clases = $this->model->all("SELECT * FROM clases");
         $alumnos = $this->model->all("SELECT * FROM usuarios WHERE permiso = 'alumno'");
+        $inscripciones =  $this->model->all("SELECT * FROM inscripciones");
 
         include  $_SERVER["DOCUMENT_ROOT"] . "/views/admin/CRUD_ALUMNOS/admin_alumnos-read.php"; 
 
@@ -28,7 +31,15 @@ class AlumnosReadController{
 
     }
 
-    public function deleteAlumno($id){
+    public function deleteAlumno($id)
+    {
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+    
+        if ($id === false || $id === null) {
+            echo "ID no válido.";
+            return;
+        }
+    
         $alumnoModel = new Cliente();
         $alumnoModel->destroy($id);
     
@@ -43,7 +54,7 @@ class AlumnosReadController{
         exit();
     }
 
-    public function editarAlumno($id){
+    public function editarAlumno(){
         
 /*      $alumno = $this->model->all("SELECT * FROM usuarios WHERE permiso = 'alumno' AND id = $id");
  */
