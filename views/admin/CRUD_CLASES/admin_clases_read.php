@@ -14,7 +14,11 @@
 
 <body class="flex flex-row" style="background-color: #f5f6fa;">
     <nav class="flex-none w-2/12 h-screen p-2 shadow-2xl font-medium">
-        <div class="text-lg"><img src="" alt="">Universidad</div>
+        <div class="text-lg"><img src="assets/logo.jpg" alt="" style="
+            width: 13%;
+            display: inline;">
+            <span>Universidad</span>
+        </div>
         <hr style="background-color: while;">
         <div class="text-xs">
             <p class="text-lg">Admin</p>

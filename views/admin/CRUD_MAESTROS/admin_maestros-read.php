@@ -17,7 +17,11 @@
 
 <body class="flex flex-row" style="background-color: #f5f6fa;">
     <nav class="flex-none w-2/12 h-screen p-2 shadow-2xl font-medium">
-        <div class="text-lg"><img src="" alt="">Universidad</div>
+        <div class="text-lg"><img src="assets/logo.jpg" alt="" style="
+            width: 13%;
+            display: inline;">
+            <span>Universidad</span>
+        </div>
         <hr style="background-color: while;">
         <div class="text-xs">
             <p class="text-lg">Admin</p>
@@ -106,52 +110,62 @@
                 </div>
             </div>
 
-    <table class="min-w-full bg-white border border-gray-300 text-xs">
-        <thead style="color: #576787;">
-            <tr class="">
-                <th class="py-2 px-4 border-gray-300">#<div></th>
-                <th class="py-2 px-4 border-l border-gray-300">Nombre </th>
-                <th class="py-2 px-4 border-l border-gray-300">Email </th>
-                <th class="py-2 px-4 border-l border-gray-300">Direccion</th>
-                <th class="py-2 px-4 border-l border-gray-300">Fec. de Nacimiento</th>
-                <th class="py-2 px-4 border-l border-gray-300">Clase Asignada</th>
-                <th class="py-2 px-4 border-l border-gray-300">Acciones<div></th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
+            <table class="min-w-full bg-white border border-gray-300 text-xs">
+                <thead style="color: #576787;">
+                    <tr class="">
+                        <th class="py-2 px-4 border-gray-300">#<div>
+                        </th>
+                        <th class="py-2 px-4 border-l border-gray-300">Nombre </th>
+                        <th class="py-2 px-4 border-l border-gray-300">Email </th>
+                        <th class="py-2 px-4 border-l border-gray-300">Direccion</th>
+                        <th class="py-2 px-4 border-l border-gray-300">Fec. de Nacimiento</th>
+                        <th class="py-2 px-4 border-l border-gray-300">Clase Asignada</th>
+                        <th class="py-2 px-4 border-l border-gray-300">Acciones<div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
                     foreach ($maestros as $maestro) {
                     ?>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["id"] ?></td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["name"] ?></td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["email"] ?></td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["direccion"] ?></td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["FN"] ?></td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["id"] ?></td>
-                <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center ">
-                            <button onclick="openModal('admin_maestros_edit.php')"><span class="material-symbols-outlined text-blue-500 text-xl	">
-                                edit
+                        <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["id"] ?></td>
+                        <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["name"] ?></td>
+                        <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["email"] ?></td>
+                        <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["direccion"] ?></td>
+                        <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["FN"] ?></td>
+                        <?php
+
+                        $maestroId = $maestro['id'];
+
+                        $clases = $clasesModel->all("SELECT * FROM clases WHERE id = $maestroId");
+
+                        foreach ($clases as $clase) {
+                            echo '<td class="py-2 px-4 border-b  border-l border-gray-300">' . $clase['name'] . '</td>';
+                        }
+                        ?>
+                        <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center ">
+                            <button onclick="openModal('/maestro/edit')"><span class="material-symbols-outlined text-blue-500 text-xl	">
+                                    edit
                                 </span>
                             </button>
 
                             <form action="/maestros/delete" method="post">
-                            <input type="number" value="<?= $maestro["id"] ?>" hidden name="id">                
-                                <button type="submit"> 
-                                <span class="material-symbols-outlined text-red-700	text-xl	">
-                                    delete
-                                </span>
-                            </button>
+                                <input type="number" value="<?= $maestro["id"] ?>" hidden name="id">
+                                <button type="submit">
+                                    <span class="material-symbols-outlined text-red-700	text-xl	">
+                                        delete
+                                    </span>
+                                </button>
                             </form>
-
                         </td>
 
-            </tr>
+                        </tr>
 
-            <?php
+                    <?php
                     }
                     ?>
-        </tbody>
-    </table>
+                </tbody>
+            </table>
 
         </div>
     </div>

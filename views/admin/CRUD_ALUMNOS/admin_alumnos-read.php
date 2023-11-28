@@ -13,7 +13,11 @@
 
 <body class="flex flex-row" style="background-color: #f5f6fa;">
     <nav class="flex-none w-2/12 h-screen p-2 shadow-2xl font-medium">
-        <div class="text-lg"><img src="" alt="">Universidad</div>
+        <div class="text-lg"><img src="assets/logo.jpg" alt="" style="
+            width: 13%;
+            display: inline;">
+            <span>Universidad</span>
+        </div>
         <hr style="background-color: while;">
         <div class="text-xs">
             <p class="text-lg">Admin</p>
@@ -129,22 +133,44 @@
                             <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["email"] ?></td>
                             <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["direccion"] ?></td>
                             <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["FN"] ?></td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["id"] ?></td>
+
+                            <?php
+
+                            $alumnoId = $alumno['id'];
+
+                            $inscripciones = $this->model->all("SELECT * FROM inscripciones WHERE id_estudiante = $alumnoId");
+
+
+                            foreach ($inscripciones as $inscripcion) {
+
+                                $materiaId = $inscripcion['id_clase'];
+
+                                foreach ($clases as $clase) {
+
+                                    if ($clase['id'] == $inscripcion['id_clase'])
+                                    echo '<td class="py-2 px-4 border-b  border-l border-gray-300">' . $clase['name']  . '</td>';
+
+                                }    
+
+                            } 
+                            ?>
+
+
                             <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center ">
                                 <input type="number" value="<?= $alumno["id"] ?>" hidden name="id">
-                                <a href="/edit/alumno?id=<?= $alumno["id"] ?>">
+                                <button onclick="openModal('/edit/alumno')">
                                     <span class="material-symbols-outlined text-blue-500 text-xl	">
                                         edit
                                     </span>
-                                </a>
-                                <form action="/alumnos/delete" method="post">
+                                </button>
+                                <form action="/alumno/delete" method="post">
                                     <input type="number" value="<?= $alumno["id"] ?>" hidden name="id">
-                                    <button type="submit">
-                                        <span class="material-symbols-outlined text-red-700	text-xl	">
-                                            delete
-                                        </span>
-                                    </button>
-                                </form>
+                                <button type="submit">
+                                    <span class="material-symbols-outlined text-red-700	text-xl	">
+                                        delete
+                                    </span>
+                                </button>
+                            </form>
                             </td>
                         </tr>
                     <?php

@@ -12,7 +12,7 @@
     <title>MODAL</title>
 </head>
     <div>
-        <div class="text-3xl mb-4">Agregar clase</div>
+        <div class="text-3xl mb-4">editar permisos</div>
     </div>
 
     

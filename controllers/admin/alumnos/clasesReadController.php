@@ -10,18 +10,14 @@ class ClasesReadController{
 
     }
     public function index() {
-        // Consulta para obtener el total de estudiantes inscritos por clase
         $query = "SELECT id_clase, COUNT(id_estudiante) AS total_inscritos FROM inscripciones GROUP BY id_clase";
         
-        // Ejecutar la consulta
         $inscritosModel = new Cliente();
         $inscritosPorClase = $inscritosModel->all($query);
         
-        // Obtener todas las clases
         $clasesModel = new Cliente();
         $clases = $clasesModel->all("SELECT * FROM clases");
     
-        // Incluir la vista
         include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/CRUD_CLASES/admin_clases_read.php";
     }
 
@@ -43,6 +39,7 @@ class ClasesReadController{
         header("Location: /CRUD_CLASES");
         exit();
     }
+
 }
     
 

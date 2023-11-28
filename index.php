@@ -59,8 +59,12 @@ if($method === 'POST'){
             $clasesReadController->deleteClase($_POST['id']);
             break;    
         case '/edit/alumno';
-            $alumnosReadController->editarAlumno($_POST['id']);
-            break;              
+            $alumnosReadController->editarAlumno();
+            break;  
+            
+            case '/alumno/delete';
+            $alumnosReadController->deleteAlumno($_POST['id']);
+            break; 
     default:
         echo "no encontramos la ruta";
         break;
@@ -112,22 +116,34 @@ if($method === 'GET'){
             break;
 
         case '/edit/alumno';
-        $alumnosReadController->agregarAlumno();
+        $alumnosReadController->editarAlumno();
         break;    
 
         case '/alumno/dashboard';
             $alumnoController->index();
             break;
-
-        case '/maestro/dashboard';
-            $maestroController->index();
-            break;       
             
         case '/alumno/calficaciones';
             $alumnoController->calificciones();
             break;    
 
+        case '/maestro/dashboard';
+            $maestroController->index();
+            break; 
+
+        case '/maestro/alumnos';
+            $maestroController->calificaciones();
+            break; 
+        case '/permisos/edit';      
+            $permisosReadController->editarPermiso();
+            break;
+
+        case '/maestro/edit';      
+            $maestrosReadController->editarMaestro();
+            break;     
         default:
+
+        
         echo "no encontramos la ruta";
         break;
     }
