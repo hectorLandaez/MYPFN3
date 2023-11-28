@@ -9,17 +9,24 @@ class ClasesReadController{
         $this-> model =new Cliente();
 
     }
-    public function index(){
-
+    public function index() {
+        // Consulta para obtener el total de estudiantes inscritos por clase
+        $query = "SELECT id_clase, COUNT(id_estudiante) AS total_inscritos FROM inscripciones GROUP BY id_clase";
+        
+        // Ejecutar la consulta
+        $inscritosModel = new Cliente();
+        $inscritosPorClase = $inscritosModel->all($query);
+        
+        // Obtener todas las clases
         $clasesModel = new Cliente();
         $clases = $clasesModel->all("SELECT * FROM clases");
-
-        include  $_SERVER["DOCUMENT_ROOT"] . "/views/admin/CRUD_CLASES/admin_clases_read.php"; 
-
+    
+        // Incluir la vista
+        include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/CRUD_CLASES/admin_clases_read.php";
     }
 
     public function agregarClase(){
-
+        
         include  $_SERVER["DOCUMENT_ROOT"] . "/views/admin/CRUD_CLASES/admin_clases_create.php"; 
 
     }
@@ -32,7 +39,6 @@ class ClasesReadController{
     }
 
     public function store($request){
-
         $response =$this->model->createClase($request);
         header("Location: /CRUD_CLASES");
         exit();

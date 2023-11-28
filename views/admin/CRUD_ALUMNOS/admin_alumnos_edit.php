@@ -6,44 +6,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/css/tailwind.css">
     <link rel="stylesheet" href="/views/style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <title>MODAL</title>
+    <title>Editar Alumno</title>
 </head>
 
-<body style="">
+<body>
     <div>
         <div class="text-3xl mb-4">Editar Alumno</div>
     </div>
 
-    
-    <span class="text-xs font-semibold	">Dni</span>
-    <div style="border-color:grey;border-style: solid;border-width: 1px;">
-    <input type="number" class="border-solid text-sm border-slate-800 w-full hover:bg-sky-50 text-slate-500"></div>
+    <form action="/edit/alumno" method="post">
 
-    <span class="text-xs font-semibold	mt-4"> Correo Electronico</span>
-    <div style="border-color:grey;border-style: solid;border-width: 1px;">
-    <input type="email" class="border-solid	text-sm border-slate-800 w-full hover:bg-sky-50 text-slate-500"></div>
+            <div class="mt-4">
+                <label for="dni" class="text-xs font-semibold">DNI</label>
+                <div class="border-solid border-slate-800 border">
+                    <input type="number" id="dni" class="text-sm w-full hover:bg-sky-50 text-slate-500" name="dni" value="">
+                </div>
+            </div>
 
-    <span class="text-xs font-semibold	mt-4">Nombre (s)</span>
-    <div style="border-color:grey;border-style: solid;border-width: 1px;">
-    <input type="text" class="border-solid	border-slate-800 w-full hover:bg-sky-50 text-slate-500"></div>
+            <div class="mt-4">
+                <label for="email" class="text-xs font-semibold">Correo Electrónico</label>
+                <div class="border-solid text-sm border-slate-800 border">
+                    <input type="email" id="email" class="w-full hover:bg-sky-50 text-slate-500" name='email' value="">
+                </div>
+            </div>
 
-    <span class="text-xs font-semibold	mt-4">Apellido (s)</span>
-    <div style="border-color:grey;border-style: solid;border-width: 1px;">
-    <input type="text" class="border-solid	border-slate-800 w-full hover:bg-sky-50 text-slate-500"></div>
+            <div class="mt-4">
+                <label for="Nombre" class="text-xs font-semibold">Nombre (s) y Apellido (s)</label>
+                <div class="border-solid border-slate-800 border">
+                    <input type="text" id="Nombre" class="border-slate-800 w-full hover:bg-sky-50 text-slate-500" name='Nombre' value="">
+                </div>
+            </div>
 
-    <span class="text-xs font-semibold	mt-4">Direccion</span>
-    <div style="border-color:grey;border-style: solid;border-width: 1px;">
-    <input type="text" class="border-solid	border-slate-800 w-full hover:bg-sky-50 text-slate-500"></div>
+            <div class="mt-4">
+                <label for="Direccion" class="text-xs font-semibold">Dirección</label>
+                <div class="border-solid border-slate-800 border">
+                    <input type="text" id="Direccion" class="border-slate-800 w-full hover:bg-sky-50 text-slate-500" name='Direccion' value="">
+                </div>
+            </div>
 
-    <span class="text-xs font-semibold	mt-4"> Fechas </span>
-    <div style="border-color:grey;border-style: solid;border-width: 1px;">
-    <input type="date" class="border-solid	border-slate-800 w-full hover:bg-sky-50 text-slate-500"></div>
+            <div class="mt-4">
+                <label for="fechas" class="text-xs font-semibold">Fechas</label>
+                <div class="border-solid border-slate-800 border">
+                    <input type="date" id="fechas" class="border-slate-800 w-full hover:bg-sky-50 text-slate-500" name='fechas' value="">
+                </div>
+            </div>
 
-    <div class="mt-4 w-full" style=" display: flex;justify-content: flex-end;flex-wrap: wrap;gap: 8px;">
-        <button class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700"  onclick="closeModal()">Close</button>
-        <button class="bg-gray-500 text-white p-2 rounded text-xs hover:bg-gray-700">Crear</button>
-    </div>
+            <div class="mt-4 flex justify-end gap-4">
+                <button class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700" onclick="closeModal()">Cerrar</button>
+                <button class="bg-gray-500 text-white p-2 rounded text-xs hover:bg-gray-700" type="submit">Actualizar</button>
+            </div>
+
+
+
 </body>
+
 </html>

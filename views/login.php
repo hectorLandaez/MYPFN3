@@ -17,12 +17,13 @@
         <span class="mb-6 font-medium w-full" style="color:#8f8f8f; display: flex;justify-content: center;">
             Bienvenido Ingresa con tu cuenta</span>
 
-        <form action="../handle_db/login.php" method="post">
+
+        <form action="/LOGIN" method="post">
             <label for="Email" class="sr-only">Email</label>
-            <input type="text" name="Email" id="Email" placeholder="Email" class="mb-4 h-8 w-full rounded-md border-gray-400 border-solid rounded-md border border-gray-600 focus:outline-none focus:border-blue-500 px-3">
+            <input type="text" name="email" id="Email" placeholder="Email" class="mb-4 h-8 w-full rounded-md border-gray-400 border-solid rounded-md border border-gray-600 focus:outline-none focus:border-blue-500 px-3">
 
             <label for="Password" class="sr-only">Password</label>
-            <input type="password" name="Password" id="Password" placeholder="Password" class=" mb-4 h-8 w-full rounded-md border-gray-400 border-solid rounded-md border border-gray-600 focus:outline-none focus:border-blue-500 px-3">
+            <input type="password" name="password" id="Password" placeholder="Password" class=" mb-4 h-8 w-full rounded-md border-gray-400 border-solid rounded-md border border-gray-600 focus:outline-none focus:border-blue-500 px-3">
 
             <div class="w-full" style="display: flex;justify-content: flex-end; align-items: center;">
                 <button type="submit" class="w-1/3 bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-300 shadow-lg">Ingresar</button>

@@ -69,7 +69,7 @@
                                 account_circle
                             </span> Perfil</a>
                     </div>
-                    <a href="#">
+                    <a href="/logout">
                         <div class="text-red-700 flex flex-row items-center"> <span class="material-symbols-outlined">
                                 logout
                             </span>Log Out</div>
@@ -117,29 +117,40 @@
                     </tr>
                 </thead>
                 <tbody>
-                <?php
+                    <?php
                     foreach ($clases as $clase) {
                     ?>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $clase["id"] ?></td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $clase["name"] ?></td>
-                        <td class="py-2 px-4 border-b  border-l border-gray-300">Hector</td>
-                        <td class="py-2 px-4 border-b  border-l border-gray-300">Hector</td>
+                        <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $clase["id"] ?></td>
+                        <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $clase["name"] ?></td>
+                        <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $clase["maestro"] ?></td>
+                        <?php
+                        $totalInscritos = 0;
+                        foreach ($inscritosPorClase as $inscritos) {
+                            if ($inscritos['id_clase'] == $clase['id']) {
+                                $totalInscritos = $inscritos['total_inscritos'];
+                                break;
+                            }
+                        }
+                        ?>
+
+
+                        <td class="py-2 px-4 border-b  border-l border-gray-300"><?php echo $totalInscritos; ?></td>
                         <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center ">
                             <button onclick="openModal('admin_clases_edit.php')"><span class="material-symbols-outlined text-blue-500 text-xl	">
-                                edit
-                            </span></button>
+                                    edit
+                                </span></button>
 
                             <form action="/clase/delete" method="post">
-                            <input type="number" value="<?= $clase["id"]?>" hidden name="id">                
-                                <button type="submit"> 
-                            <span class="material-symbols-outlined text-red-700	text-xl	">
-                                delete
-                            </span>
-                        </button>
+                                <input type="number" value="<?= $clase["id"] ?>" hidden name="id">
+                                <button type="submit">
+                                    <span class="material-symbols-outlined text-red-700	text-xl	">
+                                        delete
+                                    </span>
+                                </button>
                             </form>
 
                         </td>
-                    </tr>
+                        </tr>
                     <?php
                     }
                     ?>

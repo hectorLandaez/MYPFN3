@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,6 +57,7 @@
             <h1 class="text-xs flex flex-row items-center" style="color:#9c9da2;"> <span class="material-symbols-outlined mr-5">
                     menu
                 </span>Home</h1>
+
             <div class="dropdown">
                 <button class="flex items-center">
                     Administrador
@@ -67,13 +69,15 @@
                                 account_circle
                             </span> Perfil</a>
                     </div>
-                    <a href="#">
-                        <div class="text-red-700 flex flex-row items-center"> <span class="material-symbols-outlined">
-                                logout
-                            </span>Log Out</div>
+                    <a href="/logout">
+                        <div class="text-red-700 flex flex-row items-center">
+                            <span class="material-symbols-outlined">logout</span> Log Out
+                        </div>
                     </a>
                 </div>
             </div>
+
+
         </div>
 
         <div class="flex flex-row" style="justify-content: space-between;align-items: center;">
@@ -127,18 +131,20 @@
                             <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["FN"] ?></td>
                             <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["id"] ?></td>
                             <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center ">
-                            <button onclick="openModal('admin_alumnos_edit.php')" type="submit"><span class="material-symbols-outlined text-blue-500 text-xl	">
+                                <input type="number" value="<?= $alumno["id"] ?>" hidden name="id">
+                                <a href="/edit/alumno?id=<?= $alumno["id"] ?>">
+                                    <span class="material-symbols-outlined text-blue-500 text-xl	">
                                         edit
                                     </span>
-                            </button>
-                            <form action="/alumnos/delete" method="post">
-                                <input type="number" value="<?= $alumno["id"] ?>" hidden name="id">                
-                                <button type="submit"> 
-                                    <span class="material-symbols-outlined text-red-700	text-xl	">
-                                        delete
-                                    </span>
-                                </button>
-                            </form>
+                                </a>
+                                <form action="/alumnos/delete" method="post">
+                                    <input type="number" value="<?= $alumno["id"] ?>" hidden name="id">
+                                    <button type="submit">
+                                        <span class="material-symbols-outlined text-red-700	text-xl	">
+                                            delete
+                                        </span>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     <?php

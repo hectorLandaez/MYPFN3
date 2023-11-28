@@ -58,8 +58,9 @@ class Cliente
     public function createClase($data)
     {
         $nombre =$data["Nombre"];
+        $maestro =$data["maestro"];
 
-        $res = $this->db->query("INSERT INTO clases (name) VALUES ('$nombre')");
+        $res = $this->db->query("INSERT INTO clases (name, maestro) VALUES ('$nombre', '$maestro')");
         
         if($res){
             $ultimoId=$this->db->insert_id;
@@ -69,5 +70,22 @@ class Cliente
             return "no se pudo crear el usuario";
         }
     }
- 
+
+    public function login($email, $password)
+    {
+        $email = mysqli_real_escape_string($this->db, $email);
+        $password = mysqli_real_escape_string($this->db, $password);
+
+        $sql = "SELECT * FROM usuarios WHERE email='$email' AND contraseña='$password'";
+        $result = $this->db->query($sql);
+
+        if ($result->num_rows == 1) {
+            $user = $result->fetch_assoc();
+            return $user;
+        } else {
+            return false;
+        }
+    }
 }
+ 
+

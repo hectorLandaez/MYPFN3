@@ -1,8 +1,11 @@
 <?php
 
 require_once "./controllers/logincontroller.php";
+require_once "./controllers/logoutcontroller.php";
 
-require_once "./controllers/alumosController.php";
+require_once "./controllers/alumnos/alumnoController.php"; 
+require_once "./controllers/maestros/maestroController.php";
+require_once "./controllers/admin/alumnos/adminController.php";
 
 
 require_once "./controllers/admin/alumnos/alumnosReadController.php";
@@ -11,23 +14,28 @@ require_once "./controllers/admin/alumnos/maestrosReadController.php";
 require_once "./controllers/admin/alumnos/permisosReadController .php";
 
 
-
+$logoutcontroller = new Logoutcontroller();
 $logincontroller = new LoginController();
-$alumnosController = new AlumnosController();
+$adminController = new AdminController();
 
 $alumnosReadController = new AlumnosReadController();
 $maestrosReadController = new MaestrosReadController();
 $clasesReadController = new ClasesReadController();
 $permisosReadController = new PermisosReadController();
 
+$alumnoController = new AlumnoController();
+$maestroController = new MaestroController ();
 
 $method = $_SERVER["REQUEST_METHOD"];
 $route = $_SERVER["REQUEST_URI"];
 
+if ($method === 'POST' && $route === '/LOGIN') {
+    $logincontroller->login($_POST['email'], $_POST['password']);
+}
 
 if($method === 'POST'){
     switch ($route){
-        case '/alumnos/delete';
+        case 'LoginController';
         $alumnosReadController->deleteAlumno($_POST['id']);
         break;
 
@@ -50,6 +58,9 @@ if($method === 'POST'){
         case '/clase/delete';
             $clasesReadController->deleteClase($_POST['id']);
             break;    
+        case '/edit/alumno';
+            $alumnosReadController->editarAlumno($_POST['id']);
+            break;              
     default:
         echo "no encontramos la ruta";
         break;
@@ -61,8 +72,12 @@ if($method === 'GET'){
     switch ($route) {
 
         case '/index.php';
-            $alumnosController->index();
+            $logincontroller->index();
             break;
+
+        case '/logout';
+            $logoutcontroller->logout();
+            break;    
 
         case '/CRUD_CLASES';
             $clasesReadController->index();
@@ -83,7 +98,11 @@ if($method === 'GET'){
         case '/PERMISOS';
             $permisosReadController->index();
             break;
-            
+
+        case '/admin/dashboard';
+            $adminController->index();
+            break;
+
         case '/CRUD_ALUMNOS';
             $alumnosReadController->index();
             break;
@@ -91,10 +110,25 @@ if($method === 'GET'){
         case '/adAlumno';
             $alumnosReadController->agregarAlumno();
             break;
+
+        case '/edit/alumno';
+        $alumnosReadController->agregarAlumno();
+        break;    
+
+        case '/alumno/dashboard';
+            $alumnoController->index();
+            break;
+
+        case '/maestro/dashboard';
+            $maestroController->index();
+            break;       
             
+        case '/alumno/calficaciones';
+            $alumnoController->calificciones();
+            break;    
+
         default:
         echo "no encontramos la ruta";
         break;
     }
 } 
- 
