@@ -25,9 +25,17 @@
             <input readonly type="text" class="border-solid text-sm border-slate-800 w-full hover:bg-sky-50 text-slate-500 p-1" name="email" value=<?=$usuario['email']?>>
         </div>
 
-        <label for="rol" class="text-xs font-semibold mt-4">Rol del usuario</label>
+        <label for="permiso" class="text-xs font-semibold mt-4">permiso del usuario</label>
         <div style="border-color: grey; border-style: solid; border-width: 1px;">
-            <select id="rol" name="rol" class="border-solid text-sm border-slate-800 w-full hover:bg-sky-50 text-slate-500 p-1" name="estado" value=<?=$usuario['estado']?>>
+            <select id="permiso" name="permiso" class="border-solid text-sm border-slate-800 w-full hover:bg-sky-50 text-slate-500 p-1" name="permiso" value=<?=$usuario['permiso']?>>
+                <option value="maestro">maestro</option>
+                <option value="alumno">alumno</option>
+            </select>
+        </div>
+
+        <label for="estado" class="text-xs font-semibold mt-4">estado del usuario</label>
+        <div style="border-color: grey; border-style: solid; border-width: 1px;">
+            <select id="estado" name="estado" class="border-solid text-sm border-slate-800 w-full hover:bg-sky-50 text-slate-500 p-1" name="estado" value=<?=$usuario['estado']?>>
                 <option value="activo">activo</option>
                 <option value="inactivo">inactivo</option>
             </select>

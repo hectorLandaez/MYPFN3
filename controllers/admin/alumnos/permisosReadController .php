@@ -22,7 +22,7 @@ class PermisosReadController
     {
 
         $permisoUpdate = $this->model->updateState($id);
-         header("Location: /PERMISOS"); 
+        header("Location: /PERMISOS");  
     }
 
     public function ShowEdit($id)

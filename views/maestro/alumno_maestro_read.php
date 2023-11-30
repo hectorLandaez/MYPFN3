@@ -8,12 +8,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/public/css/tailwind.css">
     <link rel="stylesheet" href="/views/style.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body class="flex flex-row" style="background-color: #f5f6fa;">
     <nav class="flex-none w-2/12 h-screen p-2 shadow-2xl font-medium">
-        <div class="text-lg"><img src="assets/logo.jpg" alt="" style="
+        <div class="text-lg"><img src="/assets/logo.jpg" alt="" style="
             width: 13%;
             display: inline;">
             <span>Universidad</span>
@@ -76,7 +78,7 @@
         </div>
         <div class="shadow p-4 w-11/12  ml-6 bg-white">
             <div class="flex flex row justify-between items-center">
-                <p>calificacionesy mensajes de tus clases</p>
+                <p>calificaciones y mensajes de tus clases</p>
             </div>
             <hr>
             <div class="flex flex row justify-between items-center">
@@ -108,9 +110,13 @@
                 </thead>
                 <tbody>
                     <?php
+                     $rowColor = false;
+
                     $inscripciones = $this->model->all("SELECT * FROM inscripciones");
 
                     foreach ($clases as $clase) {
+                        $rowColorClass = $rowColor ? 'bg-gray-100' : 'bg-white';
+
                         $nombreClase = $clase['id'];
 
                         if ($clase['maestro'] == $maestroName) {
@@ -136,6 +142,7 @@
                             }
                         }
                     }
+                    $rowColor = !$rowColor; 
                     ?>
                 </tbody>
             </table>

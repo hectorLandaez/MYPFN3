@@ -111,7 +111,7 @@ class Cliente
         $direccion = $_POST["Direccion"];
         $fechas = $_POST["fechas"];
 
-        $usuario = $this->db->query("UPDATE usuarios SET name='$nombre', email='$email', estado='$rol', direccion='$direccion' , FN='$fechas'WHERE id=$id");
+        $usuario = $this->db->query("UPDATE usuarios SET name='$nombre', email='$email', direccion='$direccion' , FN='$fechas'WHERE id=$id");
 
         if ($usuario) {
             $res = $this->db->query("SELECT * FROM usuarios WHERE id = $id");
@@ -127,9 +127,11 @@ class Cliente
     public function updateState($id)
     {
 
-        $rol = $_POST["rol"];
+        $permiso = $_POST["permiso"];
+        $estado = $_POST["estado"];
 
-        $usuario = $this->db->query("UPDATE usuarios SET estado='$rol' WHERE id=$id");
+
+         $usuario = $this->db->query("UPDATE usuarios SET permiso='$permiso', estado='$estado' WHERE id=$id");
 
         if ($usuario) {
             $res = $this->db->query("SELECT * FROM usuarios WHERE id = $id");
