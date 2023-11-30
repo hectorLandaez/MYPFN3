@@ -16,6 +16,7 @@
     </div>
 
     <form action="/edit/alumno" method="post">
+    <input type="number" value="<?= $alumnoInfo["id"] ?>" hidden name="id">
 
             <div class="mt-4">
                 <label for="dni" class="text-xs font-semibold">DNI</label>
@@ -27,37 +28,35 @@
             <div class="mt-4">
                 <label for="email" class="text-xs font-semibold">Correo Electrónico</label>
                 <div class="border-solid text-sm border-slate-800 border">
-                    <input type="email" id="email" class="w-full hover:bg-sky-50 text-slate-500" name='email' value="">
+                    <input type="text" id="email" class="w-full hover:bg-sky-50 text-slate-500" name='email' value="<?=$alumnoInfo['email']?>">
                 </div>
             </div>
 
             <div class="mt-4">
-                <label for="Nombre" class="text-xs font-semibold">Nombre (s) y Apellido (s)</label>
+                <label for="name" class="text-xs font-semibold">Nombre (s) y Apellido (s)</label>
                 <div class="border-solid border-slate-800 border">
-                    <input type="text" id="Nombre" class="border-slate-800 w-full hover:bg-sky-50 text-slate-500" name='Nombre' value="">
+                <input type="text" id="name" class="border-slate-800 w-full hover:bg-sky-50 text-slate-500" name='name' value='<?=$alumnoInfo['name']?>'>
                 </div>
             </div>
 
             <div class="mt-4">
                 <label for="Direccion" class="text-xs font-semibold">Dirección</label>
                 <div class="border-solid border-slate-800 border">
-                    <input type="text" id="Direccion" class="border-slate-800 w-full hover:bg-sky-50 text-slate-500" name='Direccion' value="">
+                    <input type="text" id="Direccion" class="border-slate-800 w-full hover:bg-sky-50 text-slate-500" name='Direccion' value="<?=$alumnoInfo['direccion']?>">
                 </div>
             </div>
 
             <div class="mt-4">
                 <label for="fechas" class="text-xs font-semibold">Fechas</label>
                 <div class="border-solid border-slate-800 border">
-                    <input type="date" id="fechas" class="border-slate-800 w-full hover:bg-sky-50 text-slate-500" name='fechas' value="">
+                    <input type="date" id="fechas" class="border-slate-800 w-full hover:bg-sky-50 text-slate-500" name='fechas' value="<?=$alumnoInfo['FN']?>">
                 </div>
             </div>
 
             <div class="mt-4 flex justify-end gap-4">
-                <button class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700" onclick="closeModal()">Cerrar</button>
+                <a href="/CRUD_ALUMNOS" class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700">Cerrar</a>
                 <button class="bg-gray-500 text-white p-2 rounded text-xs hover:bg-gray-700" type="submit">Actualizar</button>
             </div>
-
-
 
 </body>
 

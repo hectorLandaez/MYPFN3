@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/public/css/tailwind.css">
     <link rel="stylesheet" href="/views/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
@@ -108,59 +110,54 @@
 
             </div>
 
-            <table class="min-w-full bg-white border border-gray-300 text-xs">
-                <thead style="color: #576787;">
-                    <tr class="">
-                        <th class="py-2 px-4 border-gray-300">#<div>
-                        </th>
-                        <th class="py-2 px-4 border-l border-gray-300">Clases </th>
-                        <th class="py-2 px-4 border-l border-gray-300">Maestro </th>
-                        <th class="py-2 px-4 border-l border-gray-300">Alumnos inscritos</th>
-                        <th class="py-2 px-4 border-l border-gray-300">Acciones<div>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    foreach ($clases as $clase) {
-                    ?>
-                        <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $clase["id"] ?></td>
-                        <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $clase["name"] ?></td>
-                        <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $clase["maestro"] ?></td>
-                        <?php
-                        $totalInscritos = 0;
-                        foreach ($inscritosPorClase as $inscritos) {
-                            if ($inscritos['id_clase'] == $clase['id']) {
-                                $totalInscritos = $inscritos['total_inscritos'];
-                                break;
-                            }
-                        }
-                        ?>
-
-
-                        <td class="py-2 px-4 border-b  border-l border-gray-300"><?php echo $totalInscritos; ?></td>
-                        <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center ">
-                            <button onclick="openModal('admin_clases_edit.php')"><span class="material-symbols-outlined text-blue-500 text-xl	">
-                                    edit
-                                </span></button>
-
-                            <form action="/clase/delete" method="post">
-                                <input type="number" value="<?= $clase["id"] ?>" hidden name="id">
-                                <button type="submit">
-                                    <span class="material-symbols-outlined text-red-700	text-xl	">
-                                        delete
-                                    </span>
-                                </button>
-                            </form>
-
-                        </td>
-                        </tr>
-                    <?php
+            <table class="min-w-full bg-white border border-gray-300 text-xs" id="myTable">
+    <thead style="color: #576787;">
+        <tr class="">
+            <th class="py-2 px-4 border-gray-300">#</th>
+            <th class="py-2 px-4 border-l border-gray-300">Clases</th>
+            <th class="py-2 px-4 border-l border-gray-300">Maestro</th>
+            <th class="py-2 px-4 border-l border-gray-300">Alumnos inscritos</th>
+            <th class="py-2 px-4 border-l border-gray-300">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $rowColor = false;
+        foreach ($clases as $clase) {
+            $rowColorClass = $rowColor ? 'bg-gray-100' : 'bg-white';
+        ?>
+            <tr class="<?= $rowColorClass ?>">
+                <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $clase["id"] ?></td>
+                <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $clase["name"] ?></td>
+                <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $clase["maestro"] ?></td>
+                <?php
+                $totalInscritos = 0;
+                foreach ($inscritosPorClase as $inscritos) {
+                    if ($inscritos['id_clase'] == $clase['id']) {
+                        $totalInscritos = $inscritos['total_inscritos'];
+                        break;
                     }
-                    ?>
-                </tbody>
-            </table>
-
+                }
+                ?>
+                <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $totalInscritos ?></td>
+                <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center">
+                    <button onclick="openModaleditar('/editar-clase', <?php echo $clase['id']; ?>)">
+                        <span class="material-symbols-outlined text-blue-700 text-xl">edit</span>
+                    </button>
+                    <form action="/clase/delete" method="post">
+                        <input type="number" value="<?= $clase["id"] ?>" hidden name="id">
+                        <button type="submit">
+                            <span class="material-symbols-outlined text-red-700 text-xl">delete</span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        <?php
+            $rowColor = !$rowColor; 
+        }
+        ?>
+    </tbody>
+</table>
         </div>
     </div>
 
@@ -177,3 +174,8 @@
 
 </html>
 <script src="/scripts/modales.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+</script>

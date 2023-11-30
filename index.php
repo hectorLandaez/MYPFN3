@@ -3,7 +3,7 @@
 require_once "./controllers/logincontroller.php";
 require_once "./controllers/logoutcontroller.php";
 
-require_once "./controllers/alumnos/alumnoController.php"; 
+require_once "./controllers/alumnos/alumnoController.php";
 require_once "./controllers/maestros/maestroController.php";
 require_once "./controllers/admin/alumnos/adminController.php";
 
@@ -24,32 +24,32 @@ $clasesReadController = new ClasesReadController();
 $permisosReadController = new PermisosReadController();
 
 $alumnoController = new AlumnoController();
-$maestroController = new MaestroController ();
+$maestroController = new MaestroController();
+
 
 $method = $_SERVER["REQUEST_METHOD"];
 $route = $_SERVER["REQUEST_URI"];
-
 if ($method === 'POST' && $route === '/LOGIN') {
     $logincontroller->login($_POST['email'], $_POST['password']);
 }
 
-if($method === 'POST'){
-    switch ($route){
+if ($method === 'POST') {
+    switch ($route) {
         case 'LoginController';
-        $alumnosReadController->deleteAlumno($_POST['id']);
-        break;
+            $alumnosReadController->deleteAlumno($_POST['id']);
+            break;
 
         case '/adAlumno';
-        $alumnosReadController->store($_POST);
-        break;
+            $alumnosReadController->store($_POST);
+            break;
 
         case '/maestros/delete';
-        $maestrosReadController->deleteAlumno($_POST['id']);
-        break;
+            $maestrosReadController->deleteAlumno($_POST['id']);
+            break;
 
         case '/adMaestro';
-        $maestrosReadController->store($_POST);
-        break;
+            $maestrosReadController->store($_POST);
+            break;
 
         case '/adClase';
             $clasesReadController->store($_POST);
@@ -57,31 +57,62 @@ if($method === 'POST'){
 
         case '/clase/delete';
             $clasesReadController->deleteClase($_POST['id']);
-            break;    
-        case '/edit/alumno';
-            $alumnosReadController->editarAlumno();
-            break;  
-            
-            case '/alumno/delete';
-            $alumnosReadController->deleteAlumno($_POST['id']);
-            break; 
-    default:
-        echo "no encontramos la ruta";
-        break;
-    }
-
-}
-
-if($method === 'GET'){
-    switch ($route) {
-
-        case '/index.php';
-            $logincontroller->index();
             break;
 
+        case '/edit/alumno';
+            $alumnosReadController->editarAlumno($_POST['id']);
+            break;
+
+        case '/edit/permiso';
+            $permisosReadController->editarPermiso($_POST['id']);
+            break;
+
+        case '/alumno/delete';
+            $alumnosReadController->deleteAlumno($_POST['id']);
+            break;
+
+        case '/edit/maestro';
+            $maestrosReadController->editarMaestro($_POST['id']);
+            break;
+
+        case '/edit/clase';
+            $clasesReadController->editarClase($_POST['id']);
+            break;
+
+    }
+}
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $route = $_SERVER['REQUEST_URI'];
+
+    if (isset($_GET['id'])) {
+        switch ($route) {
+            case "/editar-alumno?id={$_GET['id']}":
+                $alumnosReadController->ShowEdit($_GET['id']);
+                break;
+
+            case "/editar-maestro?id={$_GET['id']}":
+                $maestrosReadController->ShowEdit($_GET['id']);
+                break;
+
+            case "/editar-permiso?id={$_GET['id']}":
+                $permisosReadController->ShowEdit($_GET['id']);
+                break;
+
+            case "/editar-clase?id={$_GET['id']}":
+                    $clasesReadController->ShowEdit($_GET['id']);
+                    break;
+        }
+    }
+
+    switch ($route) {
+        case '/index.php':
+            $logincontroller->index();
+            break;
         case '/logout';
             $logoutcontroller->logout();
-            break;    
+            break;
 
         case '/CRUD_CLASES';
             $clasesReadController->index();
@@ -115,36 +146,21 @@ if($method === 'GET'){
             $alumnosReadController->agregarAlumno();
             break;
 
-        case '/edit/alumno';
-        $alumnosReadController->editarAlumno();
-        break;    
 
         case '/alumno/dashboard';
             $alumnoController->index();
             break;
-            
+
         case '/alumno/calficaciones';
             $alumnoController->calificciones();
-            break;    
+            break;
 
         case '/maestro/dashboard';
             $maestroController->index();
-            break; 
+            break;
 
         case '/maestro/alumnos';
             $maestroController->calificaciones();
-            break; 
-        case '/permisos/edit';      
-            $permisosReadController->editarPermiso();
             break;
-
-        case '/maestro/edit';      
-            $maestrosReadController->editarMaestro();
-            break;     
-        default:
-
-        
-        echo "no encontramos la ruta";
-        break;
     }
-} 
+}

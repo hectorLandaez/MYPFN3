@@ -42,7 +42,7 @@
 
         <div class="mt-4 w-full" style=" display: flex;justify-content: flex-end;flex-wrap: wrap;gap: 8px;">
             <button class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700"  onclick="closeModal()" type="button"> Close</button>
-            <button class="bg-gray-500 text-white p-2 rounded text-xs hover:bg-gray-700" type="submit">Crear</button>
+            <button class="bg-gray-700 text-white p-2 rounded text-xs hover:bg-gray-700" type="submit">Crear</button>
         </div>
  </form>
 </body>

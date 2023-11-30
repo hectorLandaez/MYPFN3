@@ -40,34 +40,34 @@ class Cliente
 
     public function create($data)
     {
-        $nombre =$data["Nombre"];
-        $email =$data["email"];
-        $Fechas =$data["fechas"];
-        $permiso =$data['permiso'];
+        $nombre = $data["Nombre"];
+        $email = $data["email"];
+        $Fechas = $data["fechas"];
+        $permiso = $data['permiso'];
 
         $res = $this->db->query("INSERT INTO usuarios (name, email, FN, permiso) VALUES ('$nombre', '$email', '$Fechas', '$permiso')");
-        
-        if($res){
-            $ultimoId=$this->db->insert_id;
+
+        if ($res) {
+            $ultimoId = $this->db->insert_id;
             $res = $this->db->query("select * from usuarios where id = $ultimoId");
             $data = $res->fetch_assoc();
-        } else{
+        } else {
             return "no se pudo crear el usuario";
         }
     }
 
     public function createClase($data)
     {
-        $nombre =$data["Nombre"];
-        $maestro =$data["maestro"];
+        $nombre = $data["Nombre"];
+        $maestro = $data["maestro"];
 
         $res = $this->db->query("INSERT INTO clases (name, maestro) VALUES ('$nombre', '$maestro')");
-        
-        if($res){
-            $ultimoId=$this->db->insert_id;
+
+        if ($res) {
+            $ultimoId = $this->db->insert_id;
             $res = $this->db->query("select * from clases where id = $ultimoId");
             $data = $res->fetch_assoc();
-        } else{
+        } else {
             return "no se pudo crear el usuario";
         }
     }
@@ -97,10 +97,64 @@ class Cliente
             $maestro = $result->fetch_assoc();
             return $maestro['name'];
         } else {
-            // Manejo de error, podrías lanzar una excepción o devolver un valor predeterminado
             return "Nombre no encontrado";
         }
     }
-}
- 
 
+
+
+    public function update($id)
+    {
+
+        $nombre = $_POST["name"];
+        $email = $_POST["email"];
+        $direccion = $_POST["Direccion"];
+        $fechas = $_POST["fechas"];
+
+        $usuario = $this->db->query("UPDATE usuarios SET name='$nombre', email='$email', estado='$rol', direccion='$direccion' , FN='$fechas'WHERE id=$id");
+
+        if ($usuario) {
+            $res = $this->db->query("SELECT * FROM usuarios WHERE id = $id");
+            $updatedData = $res->fetch_assoc();
+
+            return $updatedData;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function updateState($id)
+    {
+
+        $rol = $_POST["rol"];
+
+        $usuario = $this->db->query("UPDATE usuarios SET estado='$rol' WHERE id=$id");
+
+        if ($usuario) {
+            $res = $this->db->query("SELECT * FROM usuarios WHERE id = $id");
+            $updatedData = $res->fetch_assoc();
+
+            return $updatedData;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateClse($id)
+    {
+
+        $maestro = $_POST["maestro"];
+
+        $usuario = $this->db->query("UPDATE clases SET maestro='$maestro' WHERE id=$id");
+
+        if ($usuario) {
+            $res = $this->db->query("SELECT * FROM usuarios WHERE id = $id");
+            $updatedData = $res->fetch_assoc();
+
+            return $updatedData;
+        } else {
+            return false;
+        }
+    }
+}

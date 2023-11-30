@@ -144,9 +144,10 @@
                         }
                         ?>
                         <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center ">
-                            <button onclick="openModal('/maestro/edit')"><span class="material-symbols-outlined text-blue-500 text-xl	">
-                                    edit
-                                </span>
+
+                        <button onclick="openModaleditar('/editar-maestro', <?php echo $maestro['id'];?>)">                                <span class="material-symbols-outlined text-blue-700 text-xl	">
+                                        edit
+                                    </span></button>
                             </button>
 
                             <form action="/maestros/delete" method="post">

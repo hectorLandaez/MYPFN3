@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="/public/css/tailwind.css">
     <link rel="stylesheet" href="/views/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
@@ -108,43 +111,45 @@
             </div>
 
             <table class="min-w-full bg-white border border-gray-300 text-xs">
-                <thead style="color: #576787;">
-                    <tr class="">
-                        <th class="py-2 px-4 border-gray-300">#<div>
-                        </th>
-                        <th class="py-2 px-4 border-l border-gray-300">EMAIL/USUARIO </th>
-                        <th class="py-2 px-4 border-l border-gray-300">Permiso </th>
-                        <th class="py-2 px-4 border-l border-gray-300">Estado</th>
-                        <th class="py-2 px-4 border-l border-gray-300">Acciones<div>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    foreach ($usuarios as $usuario) {
-                    ?>
-                        <tr>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $usuario["id"] ?></td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $usuario["email"] ?></td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $usuario["permiso"] ?></td>
-                            <td class="py-2 px-4 border-b border-l border-gray-300">
-                                <span class="<?= $usuario["estado"] === 'activo' ? 'bg-green-500 text-white' : ($usuario["estado"] === 'inactivo' ? 'bg-red-500 text-white' : '') ?>">
-                                    <?= $usuario["estado"] ?>
-                                </span>
-                            </td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center ">
-                                <button onclick="openModal('/permisos/edit')"><span class="material-symbols-outlined text-blue-500 text-xl	">
-                                        edit
-                                    </span></button>
-                                <button>
-
-                        </tr>
-                    <?php
-                    }
-                    ?>
-                </tbody>
-
-            </table>
+    <thead style="color: #576787;">
+        <tr class="">
+            <th class="py-2 px-4 border-gray-300">#</th>
+            <th class="py-2 px-4 border-l border-gray-300">EMAIL/USUARIO</th>
+            <th class="py-2 px-4 border-l border-gray-300">Permiso</th>
+            <th class="py-2 px-4 border-l border-gray-300">Estado</th>
+            <th class="py-2 px-4 border-l border-gray-300">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $rowColor = false;
+        foreach ($usuarios as $usuario) {
+            $rowColorClass = $rowColor ? 'bg-gray-100' : 'bg-white';
+        ?>
+            <tr class="<?= $rowColorClass ?>">
+                <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $usuario["id"] ?></td>
+                <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $usuario["email"] ?></td>
+                <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $usuario["permiso"] ?></td>
+                <td class="py-2 px-4 border-b border-l border-gray-300">
+                    <span class="<?= $usuario["estado"] === 'activo' ? 'bg-green-500 text-white' : ($usuario["estado"] === 'inactivo' ? 'bg-red-500 text-white' : '') ?>">
+                        <?= $usuario["estado"] ?>
+                    </span>
+                </td>
+                <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center">
+                    <button onclick="openModaleditar('/editar-permiso',<?php echo $usuario['id']; ?>)">
+                        <span class="material-symbols-outlined text-blue-700 text-xl">edit</span>
+                    </button>
+                    <button>
+                        <!-- Agrega aquí cualquier botón adicional si es necesario -->
+                    </button>
+                </td>
+            </tr>
+        <?php
+            $rowColor = !$rowColor; // Cambia el color para la siguiente fila
+        }
+        ?>
+    </tbody>
+</table>
 
         </div>
     </div>
@@ -161,3 +166,12 @@
 
 </html>
 <script src="/scripts/modales.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            "paging": true,
+            "pageLength": 10, 
+        });
+    });
+</script>

@@ -157,12 +157,10 @@
 
 
                             <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center ">
-                                <input type="number" value="<?= $alumno["id"] ?>" hidden name="id">
-                                <button onclick="openModal('/edit/alumno')">
-                                    <span class="material-symbols-outlined text-blue-500 text-xl	">
+
+                            <button onclick="openModaleditar('/editar-alumno',<?php echo $alumno['id']; ?>)">                                <span class="material-symbols-outlined text-blue-700 text-xl	">
                                         edit
-                                    </span>
-                                </button>
+                                    </span></button>
                                 <form action="/alumno/delete" method="post">
                                     <input type="number" value="<?= $alumno["id"] ?>" hidden name="id">
                                 <button type="submit">
@@ -170,7 +168,9 @@
                                         delete
                                     </span>
                                 </button>
+                                
                             </form>
+
                             </td>
                         </tr>
                     <?php

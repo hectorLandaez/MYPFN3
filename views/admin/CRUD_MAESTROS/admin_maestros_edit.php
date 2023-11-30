@@ -12,43 +12,53 @@
     <title>MODAL</title>
 </head>
 
-<body style="">
+<body>
     <div>
         <div class="text-3xl mb-4">Editar Maestro</div>
     </div>
 
-    
-    <span class="text-xs font-semibold	">Dni</span>
-    <div style="border-color:grey;border-style: solid;border-width: 1px;">
-    <input type="number" class="border-solid text-sm border-slate-800 w-full hover:bg-sky-50 text-slate-500 p-1"></div>
+    <form action="/edit/maestro" method="post">
+    <input type="number" value="<?= $maestro["id"] ?>" hidden name="id">
 
-    <span class="text-xs font-semibold	mt-4"> Correo Electronico</span>
-    <div style="border-color:grey;border-style: solid;border-width: 1px;">
-    <input type="email" class="border-solid text-sm border-slate-800 w-full hover:bg-sky-50 text-slate-500 p-1"></div>
+            <div class="mt-4">
+                <label for="dni" class="text-xs font-semibold">DNI</label>
+                <div class="border-solid border-slate-800 border">
+                    <input type="number" id="dni" class="text-sm w-full hover:bg-sky-50 text-slate-500" name="dni" value="">
+                </div>
+            </div>
 
+            <div class="mt-4">
+                <label for="email" class="text-xs font-semibold">Correo Electrónico</label>
+                <div class="border-solid text-sm border-slate-800 border">
+                    <input type="text" id="email" class="w-full hover:bg-sky-50 text-slate-500" name='email' value="<?=$maestro['email']?>">
+                </div>
+            </div>
 
-    <span class="text-xs font-semibold	mt-4">Nombre (s)</span>
-    <div style="border-color:grey;border-style: solid;border-width: 1px;">
-    <input type="text" class="border-solid text-sm border-slate-800 w-full hover:bg-sky-50 text-slate-500 p-1"></div>
+            <div class="mt-4">
+                <label for="name" class="text-xs font-semibold">Nombre (s) y Apellido (s)</label>
+                <div class="border-solid border-slate-800 border">
+                <input type="text" id="name" class="border-slate-800 w-full hover:bg-sky-50 text-slate-500" name='name' value='<?=$maestro['name']?>'>
+                </div>
+            </div>
 
+            <div class="mt-4">
+                <label for="Direccion" class="text-xs font-semibold">Dirección</label>
+                <div class="border-solid border-slate-800 border">
+                    <input type="text" id="Direccion" class="border-slate-800 w-full hover:bg-sky-50 text-slate-500" name='Direccion' value="<?=$maestro['direccion']?>">
+                </div>
+            </div>
 
-    <span class="text-xs font-semibold	mt-4">Apellido (s)</span>
-    <div style="border-color:grey;border-style: solid;border-width: 1px;">
-    <input type="text" class="border-solid text-sm border-slate-800 w-full hover:bg-sky-50 text-slate-500 p-1"></div>
+            <div class="mt-4">
+                <label for="fechas" class="text-xs font-semibold">Fechas</label>
+                <div class="border-solid border-slate-800 border">
+                    <input type="date" id="fechas" class="border-slate-800 w-full hover:bg-sky-50 text-slate-500" name='fechas' value="<?=$maestro['FN']?>">
+                </div>
+            </div>
 
+            <div class="mt-4 flex justify-end gap-4">
+                <a href="/CRUD_MAESTROS" class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700">Cerrar</a>
+                <button class="bg-gray-500 text-white p-2 rounded text-xs hover:bg-gray-700" type="submit">Actualizar</button>
+            </div>
 
-    <span class="text-xs font-semibold	mt-4">Direccion</span>
-    <div style="border-color:grey;border-style: solid;border-width: 1px;">
-    <input type="text" class="border-solid text-sm border-slate-800 w-full hover:bg-sky-50 text-slate-500 p-1"></div>
-
-    <span class="text-xs font-semibold	mt-4"> Fechas </span>
-    <div style="border-color:grey;border-style: solid;border-width: 1px;">
-    <input type="date" class="border-solid text-sm border-slate-800 w-full hover:bg-sky-50 text-slate-500 p-1"></div>
-
-
-    <div class="mt-4 w-full" style=" display: flex;justify-content: flex-end;flex-wrap: wrap;gap: 8px;">
-        <button class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700"  onclick="closeModal()">Close</button>
-        <button class="bg-gray-500 text-white p-2 rounded text-xs hover:bg-gray-700">Crear</button>
-    </div>
 </body>
 </html>

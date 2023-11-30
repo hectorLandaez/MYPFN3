@@ -21,9 +21,6 @@ class AlumnosReadController{
 
     }
 
-    public function show(){
-        
-    }
 
     public function agregarAlumno(){
 
@@ -54,21 +51,25 @@ class AlumnosReadController{
         exit();
     }
 
-    public function editarAlumno(){
+    public function editarAlumno($id){
         
-/*      $alumno = $this->model->all("SELECT * FROM usuarios WHERE permiso = 'alumno' AND id = $id");
- */
-        include  $_SERVER["DOCUMENT_ROOT"] . "/views/admin/CRUD_ALUMNOS/admin_alumnos_edit.php"; 
+        $alumnoUpdate = $this->model->update($id);
+        header("Location: /CRUD_ALUMNOS");
 
     }
 
+    public function ShowEdit($id){
+        $alumno = $this->model->all("SELECT * FROM usuarios WHERE permiso = 'alumno' AND id = $id");
 
-    public function shoewEdit(){
-
+        foreach ($alumno as $alumnoInfo) {
+ 
         include  $_SERVER["DOCUMENT_ROOT"] . "/views/admin/CRUD_ALUMNOS/admin_alumnos_edit.php"; 
-        
+
+    }
     }
 }
+
+
     
 
 
