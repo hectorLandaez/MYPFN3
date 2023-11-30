@@ -33,13 +33,23 @@ class MaestrosReadController{
     }
 
     public function store($request){
-
         $response =$this->model->create($request);
         header("Location: /CRUD_MAESTROS");
-        exit();
     }
-    public function editarMaestro() {
-        include $_SERVER['DOCUMENT_ROOT'] . '/views/admin/CRUD_MAESTROS/admin_maestros_edit.php';
+    public function editarMaestro ($id){
+        $maestrUpdate = $this->model->update($id);
+        header("Location: /CRUD_MAESTROS");
+    }
+
+    public function ShowEdit($id)
+    {
+
+        $maestros = $this->model->all("SELECT * FROM usuarios WHERE id = $id");
+
+        foreach ($maestros as $maestro) {
+
+            include $_SERVER['DOCUMENT_ROOT'] . '/views/admin/CRUD_MAESTROS/admin_maestros_edit.php';
+        }
     }
 }
 

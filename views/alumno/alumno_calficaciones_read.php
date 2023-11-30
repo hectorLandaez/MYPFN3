@@ -120,6 +120,7 @@
                 <?php
 
                             $inscripciones = $this->model->all("SELECT * FROM inscripciones WHERE id_estudiante = $userId");
+                            $clases = $this->model->all("SELECT * FROM clases ");
 
 
                             foreach ($inscripciones as $inscripcion) {

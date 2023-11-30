@@ -40,6 +40,22 @@ class ClasesReadController{
         exit();
     }
 
+    public function editarClase ($id){
+        $claseUpdate = $this->model->updateClse($id);
+        header("Location: /CRUD_CLASES");
+    }
+
+    public function ShowEdit($id)
+    {
+
+        $clases = $this->model->all("SELECT * FROM clases WHERE id = $id");
+
+        foreach ($clases as $clase) {
+
+            include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/CRUD_CLASES/admin_clases_edit.php";
+        }
+    }
+
 }
     
 
