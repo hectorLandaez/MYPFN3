@@ -139,13 +139,10 @@
                     <button onclick="openModaleditar('/editar-permiso',<?php echo $usuario['id']; ?>)">
                         <span class="material-symbols-outlined text-blue-700 text-xl">edit</span>
                     </button>
-                    <button>
-                        <!-- Agrega aquí cualquier botón adicional si es necesario -->
-                    </button>
                 </td>
             </tr>
         <?php
-            $rowColor = !$rowColor; // Cambia el color para la siguiente fila
+            $rowColor = !$rowColor; 
         }
         ?>
     </tbody>
