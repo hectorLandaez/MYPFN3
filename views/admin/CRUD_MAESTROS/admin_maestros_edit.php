@@ -57,7 +57,7 @@
 
             <div class="mt-4 flex justify-end gap-4">
                 <a href="/CRUD_MAESTROS" class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700">Cerrar</a>
-                <button class="bg-gray-500 text-white p-2 rounded text-xs hover:bg-gray-700" type="submit">Actualizar</button>
+                <button class="bg-gray-500 text-white p-2 rounded text-xs hover:bg-gray-700" type="submit" style="background-color:#6B7280;">Actualizar</button>
             </div>
 
 </body>

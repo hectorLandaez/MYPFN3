@@ -42,10 +42,17 @@
         </div>
 
         <div class="mt-4 w-full" style=" display: flex;justify-content: flex-end;flex-wrap: wrap;gap: 8px;">
-            <a  href="/PERMISOS" class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700">Close</a>
-            <button class="bg-gray-500 text-white p-2 rounded text-xs hover:bg-gray-700" type="submit">Guardar cambios</button>
+            <button onclick="closeModal()" 
+            class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700">
+            Close
+            </button>
+            <button class=" text-white p-2 rounded text-xs hover:bg-gray-900"  style="background-color: #808080; color: #fff; padding: 8px 16px; border: none; border-radius: 4px; transition: background-color 0.3s;">
+            Guardar cambios
+            </button>
         </div>
     </form>
 </body>
+
+<script src="/scripts/modales.js"></script>
 
 </html>

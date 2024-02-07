@@ -17,7 +17,6 @@
 
     <form action="/edit/alumno" method="post">
     <input type="number" value="<?= $alumnoInfo["id"] ?>" hidden name="id">
-
             <div class="mt-4">
                 <label for="dni" class="text-xs font-semibold">DNI</label>
                 <div class="border-solid border-slate-800 border">

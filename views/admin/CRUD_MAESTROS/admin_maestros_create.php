@@ -49,8 +49,8 @@
         </div>
 
         <div class="mt-4 w-full" style=" display: flex;justify-content: flex-end;flex-wrap: wrap;gap: 8px;">
-            <button class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700" type="button" onclick="closeModal()">Close</button>
-            <button class="bg-gray-500 text-white p-2 rounded text-xs hover:bg-gray-700" type="submit">Crear</button>
+            <button class=" text-white p-2 rounded text-xs hover:bg-blue-700" type="button" onclick="closeModal()" style="background-color:#3B82F6 ;">Close</button>
+            <button class=" text-white p-2 rounded text-xs hover:bg-gray-700" type="submit" style="background-color:#6B7280;">Crear</button>
         </div>
     </form>
 </body>

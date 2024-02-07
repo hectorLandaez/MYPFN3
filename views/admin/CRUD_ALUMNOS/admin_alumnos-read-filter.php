@@ -11,12 +11,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body class="flex flex-row" style="background-color: #f5f6fa;">
-    <nav class="flex-none w-2/12 p-2 shadow-2xl font-medium">
+    <nav class="flex-none w-2/12 h-screen p-2 shadow-2xl font-medium">
         <div class="text-lg"><img src="assets/logo.jpg" alt="" style="
             width: 13%;
             display: inline;">
@@ -65,6 +64,7 @@
             <h1 class="text-xs flex flex-row items-center" style="color:#9c9da2;"> <span class="material-symbols-outlined mr-5">
                     menu
                 </span>Home</h1>
+
             <div class="dropdown">
                 <button class="flex items-center">
                     Administrador
@@ -77,20 +77,22 @@
                             </span> Perfil</a>
                     </div>
                     <a href="/logout">
-                        <div class="text-red-700 flex flex-row items-center"> <span class="material-symbols-outlined">
-                                logout
-                            </span>Log Out</div>
+                        <div class="text-red-700 flex flex-row items-center">
+                            <span class="material-symbols-outlined">logout</span> Log Out
+                        </div>
                     </a>
                 </div>
             </div>
+
+
         </div>
 
         <div class="flex flex-row" style="justify-content: space-between;align-items: center;">
-            <h1 class="text-2xl ml-6 mt-6 mb-6 font-medium" style="color:#2a2a2a;">Lista de Permisos</h1>
+            <h1 class="text-2xl ml-6 mt-6 mb-6 font-medium" style="color:#2a2a2a;">Lista de Alumnos</h1>
         </div>
         <div class="shadow p-4 w-11/12  ml-6 bg-white">
             <div class="flex flex row justify-between items-center">
-                <p>Informacion de permisos</p>
+                <p>Informacion de alumnos</p> <button onclick="openModal('/adAlumno')" class="bg-blue-500 text-white rounded p-2 text-sm hover:bg-blue-700">Agregar Alumno</button>
             </div>
             <hr>
             <div class="flex flex row justify-between items-center">
@@ -106,47 +108,80 @@
                         </tr>
                     </thead>
                 </table>
-
-                <form action="/alumno" method="get">
-                    <input type="text" name="id" id="search" placeholder="Enter ID">
-                    <button type="submit">Search by id </button>
-                </form>
-
+                <div class="flex flex-row allign-center "> search : <div class="ml-4" style="border-color:grey;border-style: solid;border-width: 1px;"><input type="text" class="w-full"></div>
+                </div>
             </div>
 
             <table class="min-w-full bg-white border border-gray-300 text-xs">
                 <thead style="color: #576787;">
                     <tr class="">
-                        <th class="py-2 px-4 border-gray-300">#</th>
-                        <th class="py-2 px-4 border-l border-gray-300">EMAIL/USUARIO</th>
-                        <th class="py-2 px-4 border-l border-gray-300">Permiso</th>
-                        <th class="py-2 px-4 border-l border-gray-300">Estado</th>
-                        <th class="py-2 px-4 border-l border-gray-300">Acciones</th>
+                        <th class="py-2 px-4 border-gray-300">#<div>
+                        </th>
+                        <th class="py-2 px-4 border-l border-gray-300">Nombre </th>
+                        <th class="py-2 px-4 border-l border-gray-300">Email </th>
+                        <th class="py-2 px-4 border-l border-gray-300">Direccion</th>
+                        <th class="py-2 px-4 border-l border-gray-300">Fec. de Nacimiento</th>
+                        <th class="py-2 px-4 border-l border-gray-300">Clase Asignada</th>
+                        <th class="py-2 px-4 border-l border-gray-300">Acciones<div>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     $rowColor = false;
-                    foreach ($usuarios as $usuario) {
+
+                    foreach ($alumnos as $alumno) {
                         $rowColorClass = $rowColor ? 'bg-gray-100' : 'bg-white';
+
                     ?>
-                        <tr class="<?= $rowColorClass ?>">
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $usuario["id"] ?></td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $usuario["email"] ?></td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $usuario["permiso"] ?></td>
-                            <td class="py-2 px-4 border-b border-l border-gray-300">
-                                <span class="<?= $usuario["estado"] === 'activo' ? 'bg-green-500 text-white' : ($usuario["estado"] === 'inactivo' ? 'bg-red-500 text-white' : '') ?>">
-                                    <?= $usuario["estado"] ?>
-                                </span>
-                            </td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center">
-                                <button onclick="openModaleditar('/editar-permiso',<?php echo $usuario['id']; ?>)">
-                                    <span class="material-symbols-outlined text-blue-700 text-xl">edit</span>
+                      <tr class="<?= $rowColorClass ?>">
+                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["id"] ?></td>
+                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["name"] ?></td>
+                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["email"] ?></td>
+                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["direccion"] ?></td>
+                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["FN"] ?></td>
+
+                            <?php
+
+                            $alumnoId = $alumno['id'];
+
+                            $inscripciones = $this->model->all("SELECT * FROM inscripciones WHERE id_estudiante = $alumnoId");
+
+
+                            foreach ($inscripciones as $inscripcion) {
+
+                                $materiaId = $inscripcion['id_clase'];
+
+                                foreach ($clases as $clase) {
+
+                                    if ($clase['id'] == $inscripcion['id_clase'])
+                                    echo '<td class="py-2 px-4 border-b  border-l border-gray-300">' . $clase['name']  . '</td>';
+
+                                }    
+
+                            } 
+                            ?>
+
+
+                            <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center ">
+
+                            <button onclick="openModaleditar('/editar-alumno',<?php echo $alumno['id']; ?>)">                                <span class="material-symbols-outlined text-blue-700 text-xl	">
+                                        edit
+                                    </span></button>
+                                <form action="/alumno/delete" method="post">
+                                    <input type="number" value="<?= $alumno["id"] ?>" hidden name="id">
+                                <button type="submit">
+                                    <span class="material-symbols-outlined text-red-700	text-xl	">
+                                        delete
+                                    </span>
                                 </button>
+                                
+                            </form>
+
                             </td>
                         </tr>
                     <?php
-                        $rowColor = !$rowColor;
+                     $rowColor = !$rowColor; 
                     }
                     ?>
                 </tbody>
@@ -163,16 +198,16 @@
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
 <script src="/scripts/modales.js"></script>
-
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#myTable').DataTable({
             "paging": true,
-            "pageLength": 10,
+            "pageLength": 10, 
         });
     });
 </script>

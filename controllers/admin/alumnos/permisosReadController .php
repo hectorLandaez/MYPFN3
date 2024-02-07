@@ -35,4 +35,15 @@ class PermisosReadController
             include $_SERVER['DOCUMENT_ROOT'] . '/views/admin/PERMISOS_USUARIOS/admin_permisos_edit.php';
         }
     }
+
+    public function search($id){
+        // Asegúrate de escapar y validar la entrada para prevenir inyección SQL
+    
+       $usuarios = $this->model->all("SELECT * FROM usuarios WHERE id = $id");
+        
+        include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/PERMISOS_USUARIOS/admin_permisos_read_filter.php";
+
+    }
+    
 }
+

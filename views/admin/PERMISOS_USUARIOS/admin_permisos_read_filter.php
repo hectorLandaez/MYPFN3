@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
-<body class="flex flex-row" style="background-color: #f5f6fa;">
-    <nav class="flex-none w-2/12 p-2 shadow-2xl font-medium">
+<body class="flex flex-row h-dvh" style="background-color: #f5f6fa; ">
+    <nav class="flex-none w-2/12 p-2 shadow-2xl font-medium ">
         <div class="text-lg"><img src="assets/logo.jpg" alt="" style="
             width: 13%;
             display: inline;">
@@ -106,7 +106,7 @@
                         </tr>
                     </thead>
                 </table>
-
+                
                 <form action="/alumno" method="get">
                     <input type="text" name="id" id="search" placeholder="Enter ID">
                     <button type="submit">Search by id </button>

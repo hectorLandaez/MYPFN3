@@ -63,6 +63,8 @@ if ($method === 'POST') {
             $alumnosReadController->editarAlumno($_POST['id']);
             break;
 
+
+
         case '/edit/permiso';
             $permisosReadController->editarPermiso($_POST['id']);
             break;
@@ -103,6 +105,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             case "/editar-clase?id={$_GET['id']}":
                     $clasesReadController->ShowEdit($_GET['id']);
                     break;
+            case "/alumno?id={$_GET['id']}";
+                    $permisosReadController->search($_GET['id']);
+                    break;            
         }
     }
 

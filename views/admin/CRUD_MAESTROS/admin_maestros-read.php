@@ -133,44 +133,50 @@
                         $rowColorClass = $rowColor ? 'bg-gray-100' : 'bg-white';
 
                     ?>
-                      <tr class="<?= $rowColorClass ?>">
-                        <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["id"] ?></td>
-                        <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["name"] ?></td>
-                        <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["email"] ?></td>
-                        <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["direccion"] ?></td>
-                        <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["FN"] ?></td>
-                        <?php
+                        <tr class="<?= $rowColorClass ?>">
+                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["id"] ?></td>
+                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["name"] ?></td>
+                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["email"] ?></td>
+                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["direccion"] ?></td>
+                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $maestro["FN"] ?></td>
+                            <?php
+                            $maestroId = $maestro['name'];
+                            $clases = $clasesModel->all("SELECT * FROM clases WHERE maestro = '$maestroId'");
 
-                        $maestroId = $maestro['id'];
+                            foreach ($clases as $clase) {
+                                $maestroName = $clase['maestro'];
+                                echo '<td class="py-2 px-4 border-b border-l border-gray-300">';
 
-                        $clases = $clasesModel->all("SELECT * FROM clases WHERE id = $maestroId");
+                                if ($maestroId==$maestroName) {
+                                    echo $clase['name'];
+                                } else {
+                                    echo 'Clase no asignada';
+                                }
 
-                        foreach ($clases as $clase) {
-                            echo '<td class="py-2 px-4 border-b  border-l border-gray-300">' . $clase['name'] . '</td>';
-                        }
-                        ?>
-                        <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center ">
+                                echo '</td>';
+                            }
+                            ?>
+                            <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center ">
 
-                        <button onclick="openModaleditar('/editar-maestro', <?php echo $maestro['id'];?>)">                                <span class="material-symbols-outlined text-blue-700 text-xl	">
+                                <button onclick="openModaleditar('/editar-maestro', <?php echo $maestro['id']; ?>)"> <span class="material-symbols-outlined text-blue-700 text-xl	">
                                         edit
                                     </span></button>
-                            </button>
-
-                            <form action="/maestros/delete" method="post">
-                                <input type="number" value="<?= $maestro["id"] ?>" hidden name="id">
-                                <button type="submit">
-                                    <span class="material-symbols-outlined text-red-700	text-xl	">
-                                        delete
-                                    </span>
                                 </button>
-                            </form>
-                        </td>
+
+                                <form action="/maestros/delete" method="post">
+                                    <input type="number" value="<?= $maestro["id"] ?>" hidden name="id">
+                                    <button type="submit">
+                                        <span class="material-symbols-outlined text-red-700	text-xl	">
+                                            delete
+                                        </span>
+                                    </button>
+                                </form>
+                            </td>
 
                         </tr>
 
                     <?php
-                     $rowColor = !$rowColor; 
-
+                        $rowColor = !$rowColor;
                     }
                     ?>
                 </tbody>
@@ -193,10 +199,10 @@
 </html>
 <script src="/scripts/modales.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#myTable').DataTable({
             "paging": true,
-            "pageLength": 10, 
+            "pageLength": 10,
         });
     });
 </script>
