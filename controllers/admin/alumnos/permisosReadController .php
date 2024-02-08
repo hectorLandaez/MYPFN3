@@ -37,7 +37,6 @@ class PermisosReadController
     }
 
     public function search($id){
-        // Asegúrate de escapar y validar la entrada para prevenir inyección SQL
     
        $usuarios = $this->model->all("SELECT * FROM usuarios WHERE id = $id");
         

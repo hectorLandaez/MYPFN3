@@ -103,11 +103,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 break;
 
             case "/editar-clase?id={$_GET['id']}":
-                    $clasesReadController->ShowEdit($_GET['id']);
-                    break;
+                $clasesReadController->ShowEdit($_GET['id']);
+                break;
+
             case "/alumno?id={$_GET['id']}";
-                    $permisosReadController->search($_GET['id']);
-                    break;            
+                $permisosReadController->search($_GET['id']);
+                break;
+
+            case "/maestro?id={$_GET['id']}";
+                $maestrosReadController->search($_GET['id']);
+                break;
+
+            case "/alumnos?id={$_GET['id']}";
+                $alumnosReadController->search($_GET['id']);
+                break;
+
+            case "/clase?id={$_GET['id']}";
+                $clasesReadController->search($_GET['id']);
+                break;                     
         }
     }
 

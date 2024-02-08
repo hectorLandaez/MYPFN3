@@ -11,7 +11,6 @@ class ClasesReadController{
     }
     public function index() {
         $query = "SELECT id_clase, COUNT(id_estudiante) AS total_inscritos FROM inscripciones GROUP BY id_clase";
-        
         $inscritosModel = new Cliente();
         $inscritosPorClase = $inscritosModel->all($query);
         
@@ -55,9 +54,16 @@ class ClasesReadController{
             include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/CRUD_CLASES/admin_clases_edit.php";
         }
     }
+    public function search($id){
+        $inscritosModel = new Cliente();
+        $query = "SELECT id_clase, COUNT(id_estudiante) AS total_inscritos FROM inscripciones GROUP BY id_clase";
+        $inscritosPorClase = $inscritosModel->all($query);
+        $clases = $this->model->all("SELECT * FROM clases WHERE id = $id");
+         include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/CRUD_CLASES/admin_clases_read-filter.php";
+         
+     }
 
 }
     
-
 
 

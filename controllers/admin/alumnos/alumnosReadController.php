@@ -12,7 +12,6 @@ class AlumnosReadController{
 
     public function index(){
 
-
         $clases = $this->model->all("SELECT * FROM clases");
         $alumnos = $this->model->all("SELECT * FROM usuarios WHERE permiso = 'alumno'");
         $inscripciones =  $this->model->all("SELECT * FROM inscripciones");
@@ -68,6 +67,11 @@ class AlumnosReadController{
     }
     }
 
+    public function search($id){
+        $clases = $this->model->all("SELECT * FROM clases");
+        $alumnos = $this->model->all("SELECT * FROM usuarios WHERE id = $id and permiso = 'alumno';");
+         include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/CRUD_ALUMNOS/admin_alumnos-read-filter.php";
+     }
 }
 
 

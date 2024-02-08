@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="/public/css/tailwind.css">
     <link rel="stylesheet" href="/views/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
@@ -64,7 +64,6 @@
             <h1 class="text-xs flex flex-row items-center" style="color:#9c9da2;"> <span class="material-symbols-outlined mr-5">
                     menu
                 </span>Home</h1>
-
             <div class="dropdown">
                 <button class="flex items-center">
                     Administrador
@@ -77,22 +76,20 @@
                             </span> Perfil</a>
                     </div>
                     <a href="/logout">
-                        <div class="text-red-700 flex flex-row items-center">
-                            <span class="material-symbols-outlined">logout</span> Log Out
-                        </div>
+                        <div class="text-red-700 flex flex-row items-center"> <span class="material-symbols-outlined">
+                                logout
+                            </span>Log Out</div>
                     </a>
                 </div>
             </div>
-
-
         </div>
 
         <div class="flex flex-row" style="justify-content: space-between;align-items: center;">
-            <h1 class="text-2xl ml-6 mt-6 mb-6 font-medium" style="color:#2a2a2a;">Lista de Alumnos</h1>
+            <h1 class="text-2xl ml-6 mt-6 mb-6 font-medium" style="color:#2a2a2a;">Lista de Clases</h1>
         </div>
         <div class="shadow p-4 w-11/12  ml-6 bg-white">
             <div class="flex flex row justify-between items-center">
-                <p>Informacion de alumnos</p> <button onclick="openModal('/adAlumno')" class="bg-blue-500 text-white rounded p-2 text-sm hover:bg-blue-700">Agregar Alumno</button>
+                <p>Informacion de Clases</p> <button onclick="openModal('/adClase')" class="bg-blue-500 text-white rounded p-2 text-sm hover:bg-blue-700">Agregar Clase</button>
             </div>
             <hr>
             <div class="flex flex row justify-between items-center">
@@ -108,87 +105,60 @@
                         </tr>
                     </thead>
                 </table>
-                <form action="/alumnos" method="get">
+                <form action="/clase" method="get">
                     <input type="text" name="id" id="search" placeholder="Enter ID">
                     <button type="submit">Search by id </button>
                 </form>
             </div>
 
-            <table class="min-w-full bg-white border border-gray-300 text-xs">
-                <thead style="color: #576787;">
-                    <tr class="">
-                        <th class="py-2 px-4 border-gray-300">#<div>
-                        </th>
-                        <th class="py-2 px-4 border-l border-gray-300">Nombre </th>
-                        <th class="py-2 px-4 border-l border-gray-300">Email </th>
-                        <th class="py-2 px-4 border-l border-gray-300">Direccion</th>
-                        <th class="py-2 px-4 border-l border-gray-300">Fec. de Nacimiento</th>
-                        <th class="py-2 px-4 border-l border-gray-300">Clase Asignada</th>
-                        <th class="py-2 px-4 border-l border-gray-300">Acciones<div>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $rowColor = false;
-
-                    foreach ($alumnos as $alumno) {
-                        $rowColorClass = $rowColor ? 'bg-gray-100' : 'bg-white';
-
-                    ?>
-                      <tr class="<?= $rowColorClass ?>">
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["id"] ?></td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["name"] ?></td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["email"] ?></td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["direccion"] ?></td>
-                            <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $alumno["FN"] ?></td>
-
-                            <?php
-
-                            $alumnoId = $alumno['id'];
-
-                            $inscripciones = $this->model->all("SELECT * FROM inscripciones WHERE id_estudiante = $alumnoId");
-
-
-                            foreach ($inscripciones as $inscripcion) {
-
-                                $materiaId = $inscripcion['id_clase'];
-
-                                foreach ($clases as $clase) {
-
-                                    if ($clase['id'] == $inscripcion['id_clase'])
-                                    echo '<td class="py-2 px-4 border-b  border-l border-gray-300">' . $clase['name']  . '</td>';
-
-                                }    
-
-                            } 
-                            ?>
-
-
-                            <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center ">
-
-                            <button onclick="openModaleditar('/editar-alumno',<?php echo $alumno['id']; ?>)">                                <span class="material-symbols-outlined text-blue-700 text-xl	">
-                                        edit
-                                    </span></button>
-                                <form action="/alumno/delete" method="post">
-                                    <input type="number" value="<?= $alumno["id"] ?>" hidden name="id">
-                                <button type="submit">
-                                    <span class="material-symbols-outlined text-red-700	text-xl	">
-                                        delete
-                                    </span>
-                                </button>
-                                
-                            </form>
-
-                            </td>
-                        </tr>
-                    <?php
-                     $rowColor = !$rowColor; 
+            <table class="min-w-full bg-white border border-gray-300 text-xs" id="myTable">
+    <thead style="color: #576787;">
+        <tr class="">
+            <th class="py-2 px-4 border-gray-300">#</th>
+            <th class="py-2 px-4 border-l border-gray-300">Clases</th>
+            <th class="py-2 px-4 border-l border-gray-300">Maestro</th>
+            <th class="py-2 px-4 border-l border-gray-300">Alumnos inscritos</th>
+            <th class="py-2 px-4 border-l border-gray-300">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $rowColor = false;
+        foreach ($clases as $clase) {
+            $rowColorClass = $rowColor ? 'bg-gray-100' : 'bg-white';
+        ?>
+            <tr class="<?= $rowColorClass ?>">
+                <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $clase["id"] ?></td>
+                <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $clase["name"] ?></td>
+                <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $clase["maestro"] ?></td>
+                <?php
+                $totalInscritos = 0;
+                foreach ($inscritosPorClase as $inscritos) {
+                    if ($inscritos['id_clase'] == $clase['id']) {
+                        $totalInscritos = $inscritos['total_inscritos'];
+                        break;
                     }
-                    ?>
-                </tbody>
-            </table>
-
+                }
+                ?>
+                <td class="py-2 px-4 border-b  border-l border-gray-300"><?= $totalInscritos ?></td>
+                <td class="py-2 px-4 border-b  border-l border-gray-300 flex items-center justify-center">
+                    <button onclick="openModaleditar('/editar-clase', <?php echo $clase['id']; ?>)">
+                        <span class="material-symbols-outlined text-blue-700 text-xl">edit</span>
+                    </button>
+                    <form action="/clase/delete" method="post">
+                        <input type="number" value="<?= $clase["id"] ?>" hidden name="id">
+                        <button type="submit">
+                            <span class="material-symbols-outlined text-red-700 text-xl">delete</span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        <?php
+            $rowColor = !$rowColor; 
+        }
+        ?>
+    </tbody>
+</table>
         </div>
     </div>
 
@@ -196,7 +166,7 @@
     <!-- Modal -->
     <div id="myModal" class="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 hidden">
         <div class="flex flex-col items-center mt-8 h-full">
-            <div id="modalContent" class=" flex flex-col bg-white p-6 rounded shadow-lg w-3/12">
+            <div id="modalContent" class=" flex flex-col bg-white p-6 rounded shadow-2xl  w-3/12">
             </div>
         </div>
     </div>
@@ -206,10 +176,7 @@
 </html>
 <script src="/scripts/modales.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#myTable').DataTable({
-            "paging": true,
-            "pageLength": 10, 
-        });
+    $(document).ready(function() {
+        $('#myTable').DataTable();
     });
 </script>

@@ -105,8 +105,10 @@
                         </tr>
                     </thead>
                 </table>
-                <div class="flex flex-row allign-center "> search : <div class="ml-4" style="border-color:grey;border-style: solid;border-width: 1px;"><input type="text" class="w-full"></div>
-                </div>
+                <form action="/clase" method="get">
+                    <input type="text" name="id" id="search" placeholder="Enter ID">
+                    <button type="submit">Search by id </button>
+                </form>
 
             </div>
 

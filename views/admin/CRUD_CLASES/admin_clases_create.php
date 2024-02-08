@@ -49,9 +49,9 @@
         </div>
 
         <div class="flex justify-end flex-wrap gap-2" style="">
-        <button class="bg-gray-500 text-white p-2 rounded text-xs hover:bg-gray-700" type="submit">Crear</button>
+        <button class="bg-gray-500 text-white p-2 rounded text-xs hover:bg-gray-700" type="submit" style="background-color:#3B82F6 ;">Crear</button>
        
-            <button type="button" class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700" onclick="closeModal()" >Close</button>
+            <button type="button" class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700" onclick="closeModal()"style="background-color:#6B7280;" >Close</button>
         </div>
     </form>    
 </body>

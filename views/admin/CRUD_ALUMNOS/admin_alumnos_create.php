@@ -41,8 +41,8 @@
         <input type="date" class="border-solid	border-slate-800 w-full hover:bg-sky-50 text-slate-500" name='fechas'></div>
 
         <div class="mt-4 w-full" style=" display: flex;justify-content: flex-end;flex-wrap: wrap;gap: 8px;">
-            <button class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700"  onclick="closeModal()" type="button"> Close</button>
-            <button class="bg-gray-700 text-white p-2 rounded text-xs hover:bg-gray-700" type="submit">Crear</button>
+            <button class="bg-blue-500 text-white p-2 rounded text-xs hover:bg-blue-700"  onclick="closeModal()" type="button"style="background-color:#3B82F6 ;" > Close</button>
+            <button class="bg-gray-700 text-white p-2 rounded text-xs hover:bg-gray-700" type="submit" style="background-color:#6B7280;">Crear</button>
         </div>
  </form>
 </body>

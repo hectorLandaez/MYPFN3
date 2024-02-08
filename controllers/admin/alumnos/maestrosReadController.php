@@ -51,5 +51,12 @@ class MaestrosReadController{
             include $_SERVER['DOCUMENT_ROOT'] . '/views/admin/CRUD_MAESTROS/admin_maestros_edit.php';
         }
     }
+
+    public function search($id){
+        $clasesModel = new Cliente();
+        $maestros = $this->model->all("SELECT * FROM usuarios WHERE id = $id and permiso = 'maestro';");
+        $clases = $clasesModel->all("SELECT * FROM clases");
+         include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/CRUD_MAESTROS/admin_maestros-read-filter.php";
+     }
 }
 
